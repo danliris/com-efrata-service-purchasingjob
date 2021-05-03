@@ -33,7 +33,8 @@ namespace Com.DanLiris.Service.Purchasing.Lib.PDFTemplates
             #region Header
 
 
-            string formString = "FM-00-AD-09-006B/R1";
+            /* string formString = "FM-00-AD-09-006B/R1"; */
+            string formString = "";
             Paragraph form = new Paragraph(formString, bold_font) { Alignment = Element.ALIGN_RIGHT };
             document.Add(form);
 
@@ -41,7 +42,7 @@ namespace Com.DanLiris.Service.Purchasing.Lib.PDFTemplates
             Paragraph title = new Paragraph(titleString, header_font) { Alignment = Element.ALIGN_CENTER };
             document.Add(title);
 
-            string companyNameString = "PT DAN LIRIS";
+            string companyNameString = "PT EFRATA RETAILINDO";
             Paragraph companyName = new Paragraph(companyNameString, bold_font) { Alignment = Element.ALIGN_LEFT };
             document.Add(companyName);
 
@@ -49,7 +50,8 @@ namespace Com.DanLiris.Service.Purchasing.Lib.PDFTemplates
             Paragraph companyAddress = new Paragraph(companyAddressString, bold_font) { Alignment = Element.ALIGN_LEFT };
             document.Add(companyAddress);
 
-            string companyPostalCodeString = "PO. Box. 166 Solo - 57100 Indonesia";
+            /* string companyPostalCodeString = "PO. Box. 166 Solo - 57100 Indonesia"; */
+            string companyPostalCodeString = "";
             Paragraph companyPostalCode = new Paragraph(companyPostalCodeString, bold_font) { Alignment = Element.ALIGN_LEFT };
             document.Add(companyPostalCode);
 

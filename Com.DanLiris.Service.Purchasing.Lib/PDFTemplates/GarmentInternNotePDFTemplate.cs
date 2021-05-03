@@ -57,7 +57,7 @@ namespace Com.DanLiris.Service.Purchasing.Lib.PDFTemplates
 
             #region Header
 
-            string addressString = "PT DAN LIRIS" + "\n" + "JL. Merapi No.23" + "\n" + "Banaran, Grogol, Kab. Sukoharjo" + "\n" + "Jawa Tengah 57552 - INDONESIA" + "\n" + "PO.BOX 166 Solo 57100" + "\n" + "Telp. (0271) 740888, 714400" + "\n" + "Fax. (0271) 735222, 740777";
+            string addressString = "PT EFRATA RETAILINDO" + "\n" + "JL. Merapi No.23" + "\n" + "Banaran, Grogol, Kab. Sukoharjo" + "\n" + "Jawa Tengah 57552 - INDONESIA" + "\n" /*+ "PO.BOX 166 Solo 57100" + "\n"*/ + "TELP. (+62 271) 719911" + "\n" + "FAX. : (+62 271) 719911";
             Paragraph address = new Paragraph(addressString, bold_font) { Alignment = Element.ALIGN_LEFT };
             document.Add(address);
             bold_font.SetStyle(Font.NORMAL);
@@ -113,11 +113,11 @@ namespace Com.DanLiris.Service.Purchasing.Lib.PDFTemplates
             PdfPCell cellRight = new PdfPCell() { Border = Rectangle.TOP_BORDER | Rectangle.LEFT_BORDER | Rectangle.BOTTOM_BORDER | Rectangle.RIGHT_BORDER, HorizontalAlignment = Element.ALIGN_RIGHT, VerticalAlignment = Element.ALIGN_MIDDLE, Padding = 5 };
             PdfPCell cellLeft = new PdfPCell() { Border = Rectangle.TOP_BORDER | Rectangle.LEFT_BORDER | Rectangle.BOTTOM_BORDER | Rectangle.RIGHT_BORDER, HorizontalAlignment = Element.ALIGN_LEFT, VerticalAlignment = Element.ALIGN_MIDDLE, Padding = 5 };
 
-            PdfPTable tableContent = new PdfPTable(9);
-            tableContent.SetWidths(new float[] { 4f, 4f, 5f, 4.5f, 5.5f, 3.3f, 2.7f, 3f, 4.5f });
-            cellCenter.Phrase = new Phrase("NO. Bon Pusat", bold_font);
-            tableContent.AddCell(cellCenter);
-            cellCenter.Phrase = new Phrase("NO. Surat Jalan", bold_font);
+            PdfPTable tableContent = new PdfPTable(8);
+            tableContent.SetWidths(new float[] { /* 4f, */ 4f, 5f, 4.5f, 5.5f, 3.3f, 2.7f, 3f, 4.5f });
+            /* cellCenter.Phrase = new Phrase("No. Bon Pusat", bold_font);
+            tableContent.AddCell(cellCenter); */
+            cellCenter.Phrase = new Phrase("No. Surat Jalan", bold_font);
             tableContent.AddCell(cellCenter);
             cellCenter.Phrase = new Phrase("Tgl. Surat Jalan", bold_font);
             tableContent.AddCell(cellCenter);
@@ -141,11 +141,11 @@ namespace Com.DanLiris.Service.Purchasing.Lib.PDFTemplates
             double maxtotal = 0;
             decimal totalcorrection = 0;
             Dictionary<string, double> units = new Dictionary<string, double>();
-            units.Add("C1A", 0);
+            /* units.Add("C1A", 0);
             units.Add("C1B", 0);
             units.Add("C2A", 0);
             units.Add("C2B", 0);
-            units.Add("C2C", 0);
+            units.Add("C2C", 0); */
             units.Add("E05", 0);
             Dictionary<long, decimal> koreksi = new Dictionary<long, decimal>();
             Dictionary<long, double> kurs = new Dictionary<long, double>();
@@ -158,7 +158,7 @@ namespace Com.DanLiris.Service.Purchasing.Lib.PDFTemplates
                 {
                     TableContents.Add(new TableContent
                     {
-                        BillNo = detail.deliveryOrder.billNo,
+                        /* BillNo = detail.deliveryOrder.billNo, */
                         DONo = detail.deliveryOrder.doNo,
                         DODate = detail.deliveryOrder.doDate.ToOffset(new TimeSpan(clientTimeZoneOffset, 0, 0)).ToString("dd MMMM yyyy", new CultureInfo("id-ID")),
                         RefNo = detail.poSerialNumber + " - " + detail.ePONo,
@@ -224,8 +224,8 @@ namespace Com.DanLiris.Service.Purchasing.Lib.PDFTemplates
 
             foreach (TableContent c in TableContents.OrderBy(o => o.DONo))
             {
-                cellLeft.Phrase = new Phrase(c.BillNo, normal_font1);
-                tableContent.AddCell(cellLeft);
+                /* cellLeft.Phrase = new Phrase(c.BillNo, normal_font1);
+                tableContent.AddCell(cellLeft); */
 
                 cellLeft.Phrase = new Phrase(c.DONo, normal_font1);
                 tableContent.AddCell(cellLeft);
