@@ -41,13 +41,13 @@ namespace Com.DanLiris.Service.Purchasing.Lib.PDFTemplates.GarmentCorrectionNote
             var invoice = garmentInvoiceFacade.ReadByDOId((int)model.DOId);
 
             #region Header
-            string addressString = "PT. DAN LIRIS\n" +
+            string addressString = "PT. EFRATA RETAILINDO\n" +
                 "JL. Merapi No.23\n" +
                 "Banaran, Grogol, Kab. Sukoharjo\n" +
                 "Jawa Tengah 57552 - INDONESIA\n" +
-                "PO.BOX 166 Solo 57100\n" +
-                "Telp. (0271) 740888, 714400\n" +
-                "Fax. (0271) 735222, 740777";
+                /*"PO.BOX 166 Solo 57100\n" +*/
+                "TELP. (+62 271) 719911\n" +
+                "FAX. : (+62 271) 719911";
             Paragraph addressParagraph = new Paragraph(8f, addressString, bold_font) { Alignment = Element.ALIGN_LEFT };
             document.Add(addressParagraph);
             Paragraph headerParagraph = new Paragraph("NOTA KOREKSI PAJAK - RETUR", header_font) { Alignment = Element.ALIGN_CENTER, SpacingAfter = 15f };
