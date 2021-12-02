@@ -751,7 +751,6 @@ namespace Com.DanLiris.Service.Purchasing.Test.Facades.GarmentUnitExpenditureNot
          //   Assert.NotEqual(0, Response.DetailExpenditureId);
 		}
 
-
         #region Flow_Detail_material
         [Fact]
         public async Task Should_Success_GetReport_Flow_Detail()
@@ -836,6 +835,7 @@ namespace Com.DanLiris.Service.Purchasing.Test.Facades.GarmentUnitExpenditureNot
             var Response = facade.GetReportOut(null, null, "", 1, 25, "{}", 7);
             Assert.NotNull(Response.Item1);
         }
+
         [Fact]
         public async Task Should_Success_Get_Excel_Monitoring_Out()
         {

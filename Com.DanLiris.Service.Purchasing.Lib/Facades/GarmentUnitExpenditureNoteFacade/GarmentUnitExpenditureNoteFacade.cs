@@ -18,7 +18,9 @@ using Com.DanLiris.Service.Purchasing.Lib.Services;
 using Com.DanLiris.Service.Purchasing.Lib.Utilities;
 using Com.DanLiris.Service.Purchasing.Lib.ViewModels.GarmentUnitExpenditureNoteViewModel;
 using Com.DanLiris.Service.Purchasing.Lib.ViewModels.IntegrationViewModel;
+using Com.DanLiris.Service.Purchasing.Lib.ViewModels.NewIntegrationViewModel;
 using Com.Moonlay.Models;
+using Microsoft.Extensions.DependencyInjection;
 using Com.Moonlay.NetCore.Lib;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.EntityFrameworkCore;
@@ -29,6 +31,8 @@ using System.Data;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace Com.DanLiris.Service.Purchasing.Lib.Facades.GarmentUnitExpenditureNoteFacade
@@ -56,7 +60,6 @@ namespace Com.DanLiris.Service.Purchasing.Lib.Facades.GarmentUnitExpenditureNote
 
         //private GarmentReturnCorrectionNoteFacade garmentReturnCorrectionNoteFacade;
 
-
         private readonly IMapper mapper;
 
         public GarmentUnitExpenditureNoteFacade(IServiceProvider serviceProvider, PurchasingDbContext dbContext)
@@ -82,15 +85,24 @@ namespace Com.DanLiris.Service.Purchasing.Lib.Facades.GarmentUnitExpenditureNote
             //this.garmentReturnCorrectionNoteFacade = (GarmentReturnCorrectionNoteFacade)serviceProvider.GetService(typeof(GarmentReturnCorrectionNoteFacade));
         }
 
-        public async Task<int> Create(GarmentUnitExpenditureNote garmentUnitExpenditureNote)
+        public async Task<GarmentUnitExpenditureNote> Create(GarmentUnitExpenditureNote garmentUnitExpenditureNote)
         {
-            int Created = 0;
+            //added 30-NOV-2021
+            var created = new GarmentUnitExpenditureNote();
+            var res = 0;
+            //added 30-NOV-2021
 
             using (var transaction = dbContext.Database.BeginTransaction())
             {
                 try
                 {
                     garmentUnitExpenditureNote.IsPreparing = false;
+
+                    //if (garmentUnitExpenditureNote.ExpenditureType == "PROSES")
+                    //{
+                    //    garmentUnitExpenditureNote.IsPreparing = true;
+                    //}
+
                     EntityExtension.FlagForCreate(garmentUnitExpenditureNote, identityService.Username, USER_AGENT);
                     garmentUnitExpenditureNote.UENNo = await GenerateNo(garmentUnitExpenditureNote);
                     var garmentUnitDeliveryOrder = dbSetGarmentUnitDeliveryOrder.First(d => d.Id == garmentUnitExpenditureNote.UnitDOId);
@@ -112,6 +124,8 @@ namespace Com.DanLiris.Service.Purchasing.Lib.Facades.GarmentUnitExpenditureNote
                             garmentDOItems.RemainingQuantity += (decimal)unitDOItem.Quantity;
                         }
                     }
+
+                    //var PR = dbContext.GarmentPurchaseRequests.FirstOrDefault(d => d.RONo.Equals(UnitDO.RONo));
 
                     var garmentUnitExpenditureNoteItems = garmentUnitExpenditureNote.Items.Where(x => x.IsSave).ToList();
                     foreach (var garmentUnitExpenditureNoteItem in garmentUnitExpenditureNoteItems)
@@ -158,7 +172,6 @@ namespace Com.DanLiris.Service.Purchasing.Lib.Facades.GarmentUnitExpenditureNote
                     //    }
                     //}
                     
-
                     if (garmentUnitExpenditureNote.ExpenditureType != "TRANSFER")
                     {
                         var garmentInventoryDocument = GenerateGarmentInventoryDocument(garmentUnitExpenditureNote, "OUT");
@@ -191,9 +204,9 @@ namespace Com.DanLiris.Service.Purchasing.Lib.Facades.GarmentUnitExpenditureNote
 
                     dbSet.Add(garmentUnitExpenditureNote);
 
-                    Created = await dbContext.SaveChangesAsync();
+                    res = await dbContext.SaveChangesAsync();
 
-                    if (garmentUnitExpenditureNote.ExpenditureType == "EXTERNAL" && garmentUnitExpenditureNote.ExpenditureTo== "PEMBELIAN")
+                    if (garmentUnitExpenditureNote.ExpenditureType == "EXTERNAL" && garmentUnitExpenditureNote.ExpenditureTo == "PEMBELIAN")
                     {
                         List<long> epoItemIds = new List<long>();
                         List<long> epoIds = new List<long>();
@@ -775,14 +788,22 @@ namespace Com.DanLiris.Service.Purchasing.Lib.Facades.GarmentUnitExpenditureNote
 
                             #endregion Inventory
 
-                            Created = await dbContext.SaveChangesAsync();
+                            res = await dbContext.SaveChangesAsync();
                         }
 
                         //Created = await dbContext.SaveChangesAsync();
                     }
 
+                    //if (garmentUnitExpenditureNote.ExpenditureType == "PROSES")
+                    //{
+                    //    await CreateGPreparing(garmentUnitExpenditureNote, UnitDO, PR);
+                    //}
+
                     transaction.Commit();
 
+                    //added 30-NOV-2021
+                    created = garmentUnitExpenditureNote;
+                    //added 30-NOV-2021
                 }
                 catch (Exception e)
                 {
@@ -791,10 +812,80 @@ namespace Com.DanLiris.Service.Purchasing.Lib.Facades.GarmentUnitExpenditureNote
                 }
             }
 
-            return Created;
+            return created;
         }
 
-        
+        //added 30-NOV-2021
+        public async Task CreateGPreparing(GarmentUnitExpenditureNote gurn)
+        {
+            //string art = gurn.Items.Where(x => !x.RONo.Contains("M")).Select(x => x.ProductRemark).FirstOrDefault();
+            //List<string> art1 = art.Split(';').ToList();
+            string preparingUri = "preparings";
+            IHttpClientService httpClient = (IHttpClientService)serviceProvider.GetService(typeof(IHttpClientService));
+
+            var unitDO = dbContext.GarmentUnitDeliveryOrders.Include(d => d.Items).FirstOrDefault(d => d.Id.Equals(gurn.UnitDOId));
+            var PR = dbContext.GarmentPurchaseRequests.FirstOrDefault(d => d.RONo.Equals(unitDO.RONo));
+
+            var prepsItem = new List<GarmentPreparingItemViewModel>();
+            var preps = new GarmentPreparingViewModel()
+            {
+                ExpenditureDate = gurn.ExpenditureDate,
+                ProcessDate = gurn.ExpenditureDate,
+                IsPreparing = gurn.IsPreparing,
+                UENId = gurn.Id,
+                UENNo = gurn.UENNo,
+                Unit = new ViewModels.NewIntegrationViewModel.UnitViewModel()
+                {
+                    Id = gurn.UnitRequestId.ToString(),
+                    Code = gurn.UnitRequestCode,
+                    Name = gurn.UnitRequestName
+                },
+                Buyer = new ViewModels.NewIntegrationViewModel.BuyerViewModel()
+                {
+                    Id = PR.BuyerId,
+                    Code = PR.BuyerCode,
+                    Name = PR.BuyerName
+                },
+                RONo = unitDO.RONo,
+                Article = unitDO.Article,
+                IsCuttingIn = false,
+            };
+
+            foreach(var item in gurn.Items)
+            {
+                //var basicPrice = item.PricePerDealUnit * item.DOCurrencyRate;
+                var prepitem = new GarmentPreparingItemViewModel()
+                {
+                    UENItemId = item.Id,
+                    Product = new ViewModels.NewIntegrationViewModel.ProductViewModel()
+                    {
+                        Id = item.ProductId.ToString(),
+                        Code = item.ProductCode,
+                        Name = item.ProductName
+                    },
+                    Quantity = item.Quantity,
+                    RemainingQuantity = item.Quantity,
+                    Uom = new ViewModels.NewIntegrationViewModel.UomViewModel()
+                    {
+                        Id = item.UomId.ToString(),
+                        Unit = item.UomUnit
+                    },
+                    ROSource = unitDO.Items.Where(x => x.Id.Equals(item.UnitDOItemId)).Select(x => x.RONo).FirstOrDefault(),
+                    DesignColor = unitDO.Items.Where(x => x.Id.Equals(item.UnitDOItemId)).Select(x => x.DesignColor).FirstOrDefault(),
+                    BasicPrice = item.BasicPrice,
+                    //Math.Round((decimal)basicPrice, 4),
+                    FabricType = item.FabricType
+                };
+                prepsItem.Add(prepitem);
+            }
+            preps.Items = prepsItem;
+
+            var response = await httpClient.PostAsync($"{APIEndpoint.GarmentProduction}{preparingUri}", new StringContent(JsonConvert.SerializeObject(preps).ToString(), Encoding.UTF8, General.JsonMediaType));
+            var content = await response.Content.ReadAsStringAsync();
+
+            response.EnsureSuccessStatusCode();
+        }
+        //added 30-NOV-2021
 
         public async Task<int> Delete(int id)
         {
@@ -1536,6 +1627,7 @@ namespace Com.DanLiris.Service.Purchasing.Lib.Facades.GarmentUnitExpenditureNote
 			return viewModel;
 
 		}
+
         public Tuple<List<MonitoringOutViewModel>, int> GetReportOut(DateTime? dateFrom, DateTime? dateTo, string type, int page, int size, string Order, int offset)
         {
             var Query = GetReportQueryOut(dateFrom, dateTo, type, offset);
@@ -1622,6 +1714,7 @@ namespace Com.DanLiris.Service.Purchasing.Lib.Facades.GarmentUnitExpenditureNote
             return Query.AsQueryable();
 
         }
+
         public MemoryStream GenerateExcelMonOut(DateTime? dateFrom, DateTime? dateTo, string category, int offset)
         {
             var Query = GetReportQueryOut(dateFrom, dateTo, category, offset);

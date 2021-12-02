@@ -610,283 +610,283 @@ namespace Com.DanLiris.Service.Purchasing.Test.Facades.GarmentDeliveryOrderTests
             Assert.IsType<System.IO.MemoryStream>(Response);
         }
         // Buku Harian Pembelian
-        [Fact]
-        public async Task Should_Success_Get_Buku_Sub_Beli_Data()
-        {
-            GarmentDeliveryOrderFacade facadeDO = new GarmentDeliveryOrderFacade(GetServiceProvider().Object, _dbContext(GetCurrentMethod()));
-            var datautilDO = dataUtil(facadeDO, GetCurrentMethod());
-            var garmentDeliveryOrder = await Task.Run(() => datautilDO.GetNewData("User"));
-            //var garmentDeliveryOrder = await datautilDO.GetNewData();
-            //foreach (var i in garmentDeliveryOrder.Items)
-            //{
-            //    foreach(var j in i.Details)
-            //    {
-            //        j.CodeRequirment = "BB";
-            //    }
-            //}
+        //[Fact]
+        //public async Task Should_Success_Get_Buku_Sub_Beli_Data()
+        //{
+        //    GarmentDeliveryOrderFacade facadeDO = new GarmentDeliveryOrderFacade(GetServiceProvider().Object, _dbContext(GetCurrentMethod()));
+        //    var datautilDO = dataUtil(facadeDO, GetCurrentMethod());
+        //    var garmentDeliveryOrder = await Task.Run(() => datautilDO.GetNewData("User"));
+        //    //var garmentDeliveryOrder = await datautilDO.GetNewData();
+        //    //foreach (var i in garmentDeliveryOrder.Items)
+        //    //{
+        //    //    foreach(var j in i.Details)
+        //    //    {
+        //    //        j.CodeRequirment = "BB";
+        //    //    }
+        //    //}
 
-            //await facadeDO.Create(garmentDeliveryOrder, "Unit Test");
+        //    //await facadeDO.Create(garmentDeliveryOrder, "Unit Test");
 
-            var garmentBeaCukaiFacade = new GarmentBeacukaiFacade(_dbContext(GetCurrentMethod()), GetServiceProvider().Object);
-            var datautilBC = new GarmentBeacukaiDataUtil(datautilDO, garmentBeaCukaiFacade);
+        //    var garmentBeaCukaiFacade = new GarmentBeacukaiFacade(_dbContext(GetCurrentMethod()), GetServiceProvider().Object);
+        //    var datautilBC = new GarmentBeacukaiDataUtil(datautilDO, garmentBeaCukaiFacade);
 
-            GarmentDailyPurchasingReportFacade DataSJ = new GarmentDailyPurchasingReportFacade(ServiceProvider, _dbContext(GetCurrentMethod()));
-            var dataDO = await datautilDO.GetTestData();
-            //var dataDO = await datautilDO.GetNewData();
-            //foreach (var i in dataDO.Items)
-            //{
-            //    foreach (var j in i.Details)
-            //    {
-            //        j.CodeRequirment = "BP";
-            //    }
-            //}
+        //    GarmentDailyPurchasingReportFacade DataSJ = new GarmentDailyPurchasingReportFacade(ServiceProvider, _dbContext(GetCurrentMethod()));
+        //    var dataDO = await datautilDO.GetTestData();
+        //    //var dataDO = await datautilDO.GetNewData();
+        //    //foreach (var i in dataDO.Items)
+        //    //{
+        //    //    foreach (var j in i.Details)
+        //    //    {
+        //    //        j.CodeRequirment = "BP";
+        //    //    }
+        //    //}
 
-            //await facadeDO.Create(garmentDeliveryOrder, "Unit Test");
+        //    //await facadeDO.Create(garmentDeliveryOrder, "Unit Test");
 
-            //var dataDO2 = await datautilDO.GetNewData();
-            //foreach (var i in dataDO2.Items)
-            //{
-            //    foreach (var j in i.Details)
-            //    {
-            //        j.CodeRequirment = "BE";
-            //    }
-            //}
+        //    //var dataDO2 = await datautilDO.GetNewData();
+        //    //foreach (var i in dataDO2.Items)
+        //    //{
+        //    //    foreach (var j in i.Details)
+        //    //    {
+        //    //        j.CodeRequirment = "BE";
+        //    //    }
+        //    //}
 
-            //await facadeDO.Create(garmentDeliveryOrder, "Unit Test");
-
-
-            var dataBC = await datautilBC.GetTestData(USERNAME, dataDO);
-
-            DateTime d1 = dataBC.BeacukaiDate.DateTime;
-            DateTime d2 = dataBC.BeacukaiDate.DateTime;
-
-            var Response = DataSJ.GetGDailyPurchasingReport(null, true, null, null, null, null,7);
-            Assert.NotNull(Response.Item1);
-            Assert.NotEqual(-1, Response.Item2);
-        }
-
-        [Fact]
-        public async Task Should_Success_Get_Buku_Sub_Beli_Null_Parameter()
-        {
-            GarmentDeliveryOrderFacade facadeDO = new GarmentDeliveryOrderFacade(GetServiceProvider().Object, _dbContext(GetCurrentMethod()));
-            var datautilDO = dataUtil(facadeDO, GetCurrentMethod());
-            var garmentDeliveryOrder = await Task.Run(() => datautilDO.GetNewData("User"));
-
-            var garmentBeaCukaiFacade = new GarmentBeacukaiFacade(_dbContext(GetCurrentMethod()), GetServiceProvider().Object);
-            var datautilBC = new GarmentBeacukaiDataUtil(datautilDO, garmentBeaCukaiFacade);
+        //    //await facadeDO.Create(garmentDeliveryOrder, "Unit Test");
 
 
+        //    var dataBC = await datautilBC.GetTestData(USERNAME, dataDO);
 
-            GarmentDailyPurchasingReportFacade DataSJ = new GarmentDailyPurchasingReportFacade(ServiceProvider, _dbContext(GetCurrentMethod()));
+        //    DateTime d1 = dataBC.BeacukaiDate.DateTime;
+        //    DateTime d2 = dataBC.BeacukaiDate.DateTime;
 
+        //    var Response = DataSJ.GetGDailyPurchasingReport(null, true, null, null, null, null,7);
+        //    Assert.NotNull(Response.Item1);
+        //    Assert.NotEqual(-1, Response.Item2);
+        //}
 
-            var dataDO = await datautilDO.GetTestData();
-            var dataBC = await datautilBC.GetTestData(USERNAME, dataDO);
+        //[Fact]
+        //public async Task Should_Success_Get_Buku_Sub_Beli_Null_Parameter()
+        //{
+        //    GarmentDeliveryOrderFacade facadeDO = new GarmentDeliveryOrderFacade(GetServiceProvider().Object, _dbContext(GetCurrentMethod()));
+        //    var datautilDO = dataUtil(facadeDO, GetCurrentMethod());
+        //    var garmentDeliveryOrder = await Task.Run(() => datautilDO.GetNewData("User"));
 
-
-            DateTime d1 = dataBC.BeacukaiDate.DateTime.AddDays(30);
-            DateTime d2 = dataBC.BeacukaiDate.DateTime.AddDays(30);
-
-            var Response = DataSJ.GetGDailyPurchasingReport(null, true, null, null, null,null, 7);
-            Assert.NotNull(Response.Item1);
-            Assert.NotEqual(-1, Response.Item2);
-        }
-        [Fact]
-        public async Task Should_Success_Get_Buku_Sub_Beli_Excel()
-        {
-            GarmentDeliveryOrderFacade facadeDO = new GarmentDeliveryOrderFacade(GetServiceProvider().Object, _dbContext(GetCurrentMethod()));
-            var datautilDO = dataUtil(facadeDO, GetCurrentMethod());
-            var garmentDeliveryOrder = await Task.Run(() => datautilDO.GetNewData("User"));
-
-            var garmentBeaCukaiFacade = new GarmentBeacukaiFacade(_dbContext(GetCurrentMethod()), GetServiceProvider().Object);
-            var datautilBC = new GarmentBeacukaiDataUtil(datautilDO, garmentBeaCukaiFacade);
-
-            var garmentCorrection = new GarmentCorrectionNotePriceFacade(GetServiceProvider().Object, _dbContext(GetCurrentMethod()));
-            var dataUtilCorrection = new GarmentCorrectionNoteDataUtil(garmentCorrection, datautilDO);
-
-            GarmentDailyPurchasingReportFacade DataSJ = new GarmentDailyPurchasingReportFacade(ServiceProvider, _dbContext(GetCurrentMethod()));
-
-            var dataDO = await datautilDO.GetTestData();
-            var dataBC = await datautilBC.GetTestData(USERNAME, dataDO);
-
-            var dataCorrect = await dataUtilCorrection.GetNewData(dataDO);
-            dataCorrect.GarmentCorrectionNote.UseVat = true;
-            dataCorrect.GarmentCorrectionNote.UseIncomeTax = true;
-            dataCorrect.GarmentCorrectionNote.IncomeTaxId = (long)dataCorrect.GarmentDeliveryOrder.IncomeTaxId;
-            dataCorrect.GarmentCorrectionNote.IncomeTaxName = dataCorrect.GarmentDeliveryOrder.IncomeTaxName;
-            dataCorrect.GarmentCorrectionNote.IncomeTaxRate = (decimal)dataCorrect.GarmentDeliveryOrder.IncomeTaxRate;
-            await garmentCorrection.Create(dataCorrect.GarmentCorrectionNote);
-
-            DateTime d1 = dataBC.BeacukaiDate.DateTime;
-            DateTime d2 = dataBC.BeacukaiDate.DateTime;
-
-            var Response = DataSJ.GenerateExcelGDailyPurchasingReport(null, true, null, null, null, null, 7);
-            Assert.IsType<System.IO.MemoryStream>(Response);
-        }
-        [Fact]
-        public async Task Should_Success_Get_Buku_Sub_Beli_Excel_BP_Code()
-        {
-            GarmentDeliveryOrderFacade facadeDO = new GarmentDeliveryOrderFacade(GetServiceProvider().Object, _dbContext(GetCurrentMethod()));
-            var datautilDO = dataUtil(facadeDO, GetCurrentMethod());
-            var garmentDeliveryOrder = await Task.Run(() => datautilDO.GetNewData("User"));
-
-            var garmentBeaCukaiFacade = new GarmentBeacukaiFacade(_dbContext(GetCurrentMethod()), GetServiceProvider().Object);
-            var datautilBC = new GarmentBeacukaiDataUtil(datautilDO, garmentBeaCukaiFacade);
-
-            var garmentCorrection = new GarmentCorrectionNotePriceFacade(GetServiceProvider().Object, _dbContext(GetCurrentMethod()));
-            var dataUtilCorrection = new GarmentCorrectionNoteDataUtil(garmentCorrection, datautilDO);
-
-            GarmentDailyPurchasingReportFacade DataSJ = new GarmentDailyPurchasingReportFacade(ServiceProvider, _dbContext(GetCurrentMethod()));
-
-            //var dataDO = await datautilDO.GetTestData();
-
-            var dataDO = await datautilDO.GetNewData();
-            foreach (var i in dataDO.Items)
-            {
-                foreach (var j in i.Details)
-                {
-                    j.CodeRequirment = "BP";
-                }
-            }
-
-            await facadeDO.Create(dataDO, "Unit Test");
-            //var dataBC = await datautilBC.GetTestData(USERNAME, dataDO);
-            var dataBC = await datautilBC.GetNewData(USERNAME, dataDO);
-            //dataBC.ArrivalDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day - 1);
-            dataBC.ArrivalDate = DateTime.Now.AddDays(-1);
-            await garmentBeaCukaiFacade.Create(dataBC, USERNAME);
-
-
-            DateTime d1 = dataBC.BeacukaiDate.DateTime;
-            DateTime d2 = dataBC.BeacukaiDate.DateTime;
-
-            var Response = DataSJ.GenerateExcelGDailyPurchasingReport(null, true, null, null, null, null, 7);
-            Assert.IsType<System.IO.MemoryStream>(Response);
-        }
-        [Fact]
-        public async Task Should_Success_Get_Buku_Sub_Beli_Excel_BB_Code()
-        {
-            GarmentDeliveryOrderFacade facadeDO = new GarmentDeliveryOrderFacade(GetServiceProvider().Object, _dbContext(GetCurrentMethod()));
-            var datautilDO = dataUtil(facadeDO, GetCurrentMethod());
-            var garmentDeliveryOrder = await Task.Run(() => datautilDO.GetNewData("User"));
-
-            var garmentBeaCukaiFacade = new GarmentBeacukaiFacade(_dbContext(GetCurrentMethod()), GetServiceProvider().Object);
-            var datautilBC = new GarmentBeacukaiDataUtil(datautilDO, garmentBeaCukaiFacade);
-
-            var garmentCorrection = new GarmentCorrectionNotePriceFacade(GetServiceProvider().Object, _dbContext(GetCurrentMethod()));
-            var dataUtilCorrection = new GarmentCorrectionNoteDataUtil(garmentCorrection, datautilDO);
-
-            GarmentDailyPurchasingReportFacade DataSJ = new GarmentDailyPurchasingReportFacade(ServiceProvider, _dbContext(GetCurrentMethod()));
-
-            //var dataDO = await datautilDO.GetTestData();
-
-            var dataDO = await datautilDO.GetNewData();
-            foreach (var i in dataDO.Items)
-            {
-                foreach (var j in i.Details)
-                {
-                    j.CodeRequirment = "BB";
-                }
-            }
-            await facadeDO.Create(dataDO, "Unit Test");
-            //var dataBC = await datautilBC.GetTestData(USERNAME, dataDO);
-
-            var dataBC = await datautilBC.GetNewData(USERNAME, dataDO);
-            //dataBC.ArrivalDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day - 1);
-            dataBC.ArrivalDate = DateTime.Now.AddDays(-1);
-            await garmentBeaCukaiFacade.Create(dataBC, USERNAME);
+        //    var garmentBeaCukaiFacade = new GarmentBeacukaiFacade(_dbContext(GetCurrentMethod()), GetServiceProvider().Object);
+        //    var datautilBC = new GarmentBeacukaiDataUtil(datautilDO, garmentBeaCukaiFacade);
 
 
 
-            DateTime d1 = dataBC.BeacukaiDate.DateTime;
-            DateTime d2 = dataBC.BeacukaiDate.DateTime;
-
-            var Response = DataSJ.GenerateExcelGDailyPurchasingReport(null, true, null, null, null, null, 7);
-            Assert.IsType<System.IO.MemoryStream>(Response);
-        }
-        [Fact]
-        public async Task Should_Success_Get_Buku_Sub_Beli_Excel_BE_Code()
-        {
-            GarmentDeliveryOrderFacade facadeDO = new GarmentDeliveryOrderFacade(GetServiceProvider().Object, _dbContext(GetCurrentMethod()));
-            var datautilDO = dataUtil(facadeDO, GetCurrentMethod());
-            var garmentDeliveryOrder = await Task.Run(() => datautilDO.GetNewData("User"));
+        //    GarmentDailyPurchasingReportFacade DataSJ = new GarmentDailyPurchasingReportFacade(ServiceProvider, _dbContext(GetCurrentMethod()));
 
 
-            var garmentBeaCukaiFacade = new GarmentBeacukaiFacade(_dbContext(GetCurrentMethod()), GetServiceProvider().Object);
-            var datautilBC = new GarmentBeacukaiDataUtil(datautilDO, garmentBeaCukaiFacade);
+        //    var dataDO = await datautilDO.GetTestData();
+        //    var dataBC = await datautilBC.GetTestData(USERNAME, dataDO);
 
-            var garmentCorrection = new GarmentCorrectionNotePriceFacade(GetServiceProvider().Object, _dbContext(GetCurrentMethod()));
-            var dataUtilCorrection = new GarmentCorrectionNoteDataUtil(garmentCorrection, datautilDO);
 
-            GarmentDailyPurchasingReportFacade DataSJ = new GarmentDailyPurchasingReportFacade(ServiceProvider, _dbContext(GetCurrentMethod()));
+        //    DateTime d1 = dataBC.BeacukaiDate.DateTime.AddDays(30);
+        //    DateTime d2 = dataBC.BeacukaiDate.DateTime.AddDays(30);
 
-            //var dataDO = await datautilDO.GetTestData();
+        //    var Response = DataSJ.GetGDailyPurchasingReport(null, true, null, null, null,null, 7);
+        //    Assert.NotNull(Response.Item1);
+        //    Assert.NotEqual(-1, Response.Item2);
+        //}
+        //[Fact]
+        //public async Task Should_Success_Get_Buku_Sub_Beli_Excel()
+        //{
+        //    GarmentDeliveryOrderFacade facadeDO = new GarmentDeliveryOrderFacade(GetServiceProvider().Object, _dbContext(GetCurrentMethod()));
+        //    var datautilDO = dataUtil(facadeDO, GetCurrentMethod());
+        //    var garmentDeliveryOrder = await Task.Run(() => datautilDO.GetNewData("User"));
 
-            var dataDO = await datautilDO.GetNewData();
-            foreach (var i in dataDO.Items)
-            {
-                foreach (var j in i.Details)
-                {
-                    j.CodeRequirment = "BE";
-                }
-            }
-            await facadeDO.Create(dataDO, "Unit Test");
+        //    var garmentBeaCukaiFacade = new GarmentBeacukaiFacade(_dbContext(GetCurrentMethod()), GetServiceProvider().Object);
+        //    var datautilBC = new GarmentBeacukaiDataUtil(datautilDO, garmentBeaCukaiFacade);
 
-            //var dataBC = await datautilBC.GetTestData(USERNAME, dataDO);
-            var dataBC = await datautilBC.GetNewData(USERNAME, dataDO);
+        //    var garmentCorrection = new GarmentCorrectionNotePriceFacade(GetServiceProvider().Object, _dbContext(GetCurrentMethod()));
+        //    var dataUtilCorrection = new GarmentCorrectionNoteDataUtil(garmentCorrection, datautilDO);
 
-            //int day = DateTime.Now.Day 
+        //    GarmentDailyPurchasingReportFacade DataSJ = new GarmentDailyPurchasingReportFacade(ServiceProvider, _dbContext(GetCurrentMethod()));
 
-            //dataBC.ArrivalDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day - 1);
-            dataBC.ArrivalDate = DateTime.Now.AddDays(-1);
-            await garmentBeaCukaiFacade.Create(dataBC, USERNAME);
-            //var dataCorrect = await dataUtilCorrection.GetNewData(dataDO);
-            //dataCorrect.GarmentCorrectionNote.UseVat = true;
-            //dataCorrect.GarmentCorrectionNote.UseIncomeTax = true;
-            //dataCorrect.GarmentCorrectionNote.IncomeTaxId = (long)dataCorrect.GarmentDeliveryOrder.IncomeTaxId;
-            //dataCorrect.GarmentCorrectionNote.IncomeTaxName = dataCorrect.GarmentDeliveryOrder.IncomeTaxName;
-            //dataCorrect.GarmentCorrectionNote.IncomeTaxRate = (decimal)dataCorrect.GarmentDeliveryOrder.IncomeTaxRate;
-            //await garmentCorrection.Create(dataCorrect.GarmentCorrectionNote);
+        //    var dataDO = await datautilDO.GetTestData();
+        //    var dataBC = await datautilBC.GetTestData(USERNAME, dataDO);
 
-            DateTime d1 = dataBC.BeacukaiDate.DateTime;
-            DateTime d2 = dataBC.BeacukaiDate.DateTime;
+        //    var dataCorrect = await dataUtilCorrection.GetNewData(dataDO);
+        //    dataCorrect.GarmentCorrectionNote.UseVat = true;
+        //    dataCorrect.GarmentCorrectionNote.UseIncomeTax = true;
+        //    dataCorrect.GarmentCorrectionNote.IncomeTaxId = (long)dataCorrect.GarmentDeliveryOrder.IncomeTaxId;
+        //    dataCorrect.GarmentCorrectionNote.IncomeTaxName = dataCorrect.GarmentDeliveryOrder.IncomeTaxName;
+        //    dataCorrect.GarmentCorrectionNote.IncomeTaxRate = (decimal)dataCorrect.GarmentDeliveryOrder.IncomeTaxRate;
+        //    await garmentCorrection.Create(dataCorrect.GarmentCorrectionNote);
 
-            var Response = DataSJ.GenerateExcelGDailyPurchasingReport(null, true, null, null, null, null, 7);
-            Assert.IsType<System.IO.MemoryStream>(Response);
-        }
+        //    DateTime d1 = dataBC.BeacukaiDate.DateTime;
+        //    DateTime d2 = dataBC.BeacukaiDate.DateTime;
+
+        //    var Response = DataSJ.GenerateExcelGDailyPurchasingReport(null, true, null, null, null, null, 7);
+        //    Assert.IsType<System.IO.MemoryStream>(Response);
+        //}
+        //[Fact]
+        //public async Task Should_Success_Get_Buku_Sub_Beli_Excel_BP_Code()
+        //{
+        //    GarmentDeliveryOrderFacade facadeDO = new GarmentDeliveryOrderFacade(GetServiceProvider().Object, _dbContext(GetCurrentMethod()));
+        //    var datautilDO = dataUtil(facadeDO, GetCurrentMethod());
+        //    var garmentDeliveryOrder = await Task.Run(() => datautilDO.GetNewData("User"));
+
+        //    var garmentBeaCukaiFacade = new GarmentBeacukaiFacade(_dbContext(GetCurrentMethod()), GetServiceProvider().Object);
+        //    var datautilBC = new GarmentBeacukaiDataUtil(datautilDO, garmentBeaCukaiFacade);
+
+        //    var garmentCorrection = new GarmentCorrectionNotePriceFacade(GetServiceProvider().Object, _dbContext(GetCurrentMethod()));
+        //    var dataUtilCorrection = new GarmentCorrectionNoteDataUtil(garmentCorrection, datautilDO);
+
+        //    GarmentDailyPurchasingReportFacade DataSJ = new GarmentDailyPurchasingReportFacade(ServiceProvider, _dbContext(GetCurrentMethod()));
+
+        //    //var dataDO = await datautilDO.GetTestData();
+
+        //    var dataDO = await datautilDO.GetNewData();
+        //    foreach (var i in dataDO.Items)
+        //    {
+        //        foreach (var j in i.Details)
+        //        {
+        //            j.CodeRequirment = "BP";
+        //        }
+        //    }
+
+        //    await facadeDO.Create(dataDO, "Unit Test");
+        //    //var dataBC = await datautilBC.GetTestData(USERNAME, dataDO);
+        //    var dataBC = await datautilBC.GetNewData(USERNAME, dataDO);
+        //    //dataBC.ArrivalDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day - 1);
+        //    dataBC.ArrivalDate = DateTime.Now.AddDays(-1);
+        //    await garmentBeaCukaiFacade.Create(dataBC, USERNAME);
+
+
+        //    DateTime d1 = dataBC.BeacukaiDate.DateTime;
+        //    DateTime d2 = dataBC.BeacukaiDate.DateTime;
+
+        //    var Response = DataSJ.GenerateExcelGDailyPurchasingReport(null, true, null, null, null, null, 7);
+        //    Assert.IsType<System.IO.MemoryStream>(Response);
+        //}
+        //[Fact]
+        //public async Task Should_Success_Get_Buku_Sub_Beli_Excel_BB_Code()
+        //{
+        //    GarmentDeliveryOrderFacade facadeDO = new GarmentDeliveryOrderFacade(GetServiceProvider().Object, _dbContext(GetCurrentMethod()));
+        //    var datautilDO = dataUtil(facadeDO, GetCurrentMethod());
+        //    var garmentDeliveryOrder = await Task.Run(() => datautilDO.GetNewData("User"));
+
+        //    var garmentBeaCukaiFacade = new GarmentBeacukaiFacade(_dbContext(GetCurrentMethod()), GetServiceProvider().Object);
+        //    var datautilBC = new GarmentBeacukaiDataUtil(datautilDO, garmentBeaCukaiFacade);
+
+        //    var garmentCorrection = new GarmentCorrectionNotePriceFacade(GetServiceProvider().Object, _dbContext(GetCurrentMethod()));
+        //    var dataUtilCorrection = new GarmentCorrectionNoteDataUtil(garmentCorrection, datautilDO);
+
+        //    GarmentDailyPurchasingReportFacade DataSJ = new GarmentDailyPurchasingReportFacade(ServiceProvider, _dbContext(GetCurrentMethod()));
+
+        //    //var dataDO = await datautilDO.GetTestData();
+
+        //    var dataDO = await datautilDO.GetNewData();
+        //    foreach (var i in dataDO.Items)
+        //    {
+        //        foreach (var j in i.Details)
+        //        {
+        //            j.CodeRequirment = "BB";
+        //        }
+        //    }
+        //    await facadeDO.Create(dataDO, "Unit Test");
+        //    //var dataBC = await datautilBC.GetTestData(USERNAME, dataDO);
+
+        //    var dataBC = await datautilBC.GetNewData(USERNAME, dataDO);
+        //    //dataBC.ArrivalDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day - 1);
+        //    dataBC.ArrivalDate = DateTime.Now.AddDays(-1);
+        //    await garmentBeaCukaiFacade.Create(dataBC, USERNAME);
+
+
+
+        //    DateTime d1 = dataBC.BeacukaiDate.DateTime;
+        //    DateTime d2 = dataBC.BeacukaiDate.DateTime;
+
+        //    var Response = DataSJ.GenerateExcelGDailyPurchasingReport(null, true, null, null, null, null, 7);
+        //    Assert.IsType<System.IO.MemoryStream>(Response);
+        //}
+        //[Fact]
+        //public async Task Should_Success_Get_Buku_Sub_Beli_Excel_BE_Code()
+        //{
+        //    GarmentDeliveryOrderFacade facadeDO = new GarmentDeliveryOrderFacade(GetServiceProvider().Object, _dbContext(GetCurrentMethod()));
+        //    var datautilDO = dataUtil(facadeDO, GetCurrentMethod());
+        //    var garmentDeliveryOrder = await Task.Run(() => datautilDO.GetNewData("User"));
+
+
+        //    var garmentBeaCukaiFacade = new GarmentBeacukaiFacade(_dbContext(GetCurrentMethod()), GetServiceProvider().Object);
+        //    var datautilBC = new GarmentBeacukaiDataUtil(datautilDO, garmentBeaCukaiFacade);
+
+        //    var garmentCorrection = new GarmentCorrectionNotePriceFacade(GetServiceProvider().Object, _dbContext(GetCurrentMethod()));
+        //    var dataUtilCorrection = new GarmentCorrectionNoteDataUtil(garmentCorrection, datautilDO);
+
+        //    GarmentDailyPurchasingReportFacade DataSJ = new GarmentDailyPurchasingReportFacade(ServiceProvider, _dbContext(GetCurrentMethod()));
+
+        //    //var dataDO = await datautilDO.GetTestData();
+
+        //    var dataDO = await datautilDO.GetNewData();
+        //    foreach (var i in dataDO.Items)
+        //    {
+        //        foreach (var j in i.Details)
+        //        {
+        //            j.CodeRequirment = "BE";
+        //        }
+        //    }
+        //    await facadeDO.Create(dataDO, "Unit Test");
+
+        //    //var dataBC = await datautilBC.GetTestData(USERNAME, dataDO);
+        //    var dataBC = await datautilBC.GetNewData(USERNAME, dataDO);
+
+        //    //int day = DateTime.Now.Day 
+
+        //    //dataBC.ArrivalDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day - 1);
+        //    dataBC.ArrivalDate = DateTime.Now.AddDays(-1);
+        //    await garmentBeaCukaiFacade.Create(dataBC, USERNAME);
+        //    //var dataCorrect = await dataUtilCorrection.GetNewData(dataDO);
+        //    //dataCorrect.GarmentCorrectionNote.UseVat = true;
+        //    //dataCorrect.GarmentCorrectionNote.UseIncomeTax = true;
+        //    //dataCorrect.GarmentCorrectionNote.IncomeTaxId = (long)dataCorrect.GarmentDeliveryOrder.IncomeTaxId;
+        //    //dataCorrect.GarmentCorrectionNote.IncomeTaxName = dataCorrect.GarmentDeliveryOrder.IncomeTaxName;
+        //    //dataCorrect.GarmentCorrectionNote.IncomeTaxRate = (decimal)dataCorrect.GarmentDeliveryOrder.IncomeTaxRate;
+        //    //await garmentCorrection.Create(dataCorrect.GarmentCorrectionNote);
+
+        //    DateTime d1 = dataBC.BeacukaiDate.DateTime;
+        //    DateTime d2 = dataBC.BeacukaiDate.DateTime;
+
+        //    var Response = DataSJ.GenerateExcelGDailyPurchasingReport(null, true, null, null, null, null, 7);
+        //    Assert.IsType<System.IO.MemoryStream>(Response);
+        //}
        
-        [Fact]
-        public async Task Should_Success_Get_Buku_Sub_Beli_Excel_Null_Parameter()
-        {
-            GarmentDeliveryOrderFacade facadeDO = new GarmentDeliveryOrderFacade(GetServiceProvider().Object, _dbContext(GetCurrentMethod()));
-            var datautilDO = dataUtil(facadeDO, GetCurrentMethod());
-            var garmentDeliveryOrder = await Task.Run(() => datautilDO.GetNewData("User"));
+        //[Fact]
+        //public async Task Should_Success_Get_Buku_Sub_Beli_Excel_Null_Parameter()
+        //{
+        //    GarmentDeliveryOrderFacade facadeDO = new GarmentDeliveryOrderFacade(GetServiceProvider().Object, _dbContext(GetCurrentMethod()));
+        //    var datautilDO = dataUtil(facadeDO, GetCurrentMethod());
+        //    var garmentDeliveryOrder = await Task.Run(() => datautilDO.GetNewData("User"));
 
-            var garmentBeaCukaiFacade = new GarmentBeacukaiFacade(_dbContext(GetCurrentMethod()), GetServiceProvider().Object);
-            var datautilBC = new GarmentBeacukaiDataUtil(datautilDO, garmentBeaCukaiFacade);
+        //    var garmentBeaCukaiFacade = new GarmentBeacukaiFacade(_dbContext(GetCurrentMethod()), GetServiceProvider().Object);
+        //    var datautilBC = new GarmentBeacukaiDataUtil(datautilDO, garmentBeaCukaiFacade);
 
-            var garmentCorrection = new GarmentCorrectionNotePriceFacade(GetServiceProvider().Object, _dbContext(GetCurrentMethod()));
-            var dataUtilCorrection = new GarmentCorrectionNoteDataUtil(garmentCorrection, datautilDO);
+        //    var garmentCorrection = new GarmentCorrectionNotePriceFacade(GetServiceProvider().Object, _dbContext(GetCurrentMethod()));
+        //    var dataUtilCorrection = new GarmentCorrectionNoteDataUtil(garmentCorrection, datautilDO);
 
-            GarmentDailyPurchasingReportFacade DataSJ = new GarmentDailyPurchasingReportFacade(ServiceProvider, _dbContext(GetCurrentMethod()));
+        //    GarmentDailyPurchasingReportFacade DataSJ = new GarmentDailyPurchasingReportFacade(ServiceProvider, _dbContext(GetCurrentMethod()));
 
-            var dataDO = await datautilDO.GetTestData();
-            var dataBC = await datautilBC.GetTestData(USERNAME, dataDO);
+        //    var dataDO = await datautilDO.GetTestData();
+        //    var dataBC = await datautilBC.GetTestData(USERNAME, dataDO);
 
-            var dataCorrect = await dataUtilCorrection.GetNewData(dataDO);
-            dataCorrect.GarmentCorrectionNote.UseVat = true;
-            dataCorrect.GarmentCorrectionNote.UseIncomeTax = true;
-            dataCorrect.GarmentCorrectionNote.IncomeTaxId = (long)dataCorrect.GarmentDeliveryOrder.IncomeTaxId;
-            dataCorrect.GarmentCorrectionNote.IncomeTaxName = dataCorrect.GarmentDeliveryOrder.IncomeTaxName;
-            dataCorrect.GarmentCorrectionNote.IncomeTaxRate = (decimal)dataCorrect.GarmentDeliveryOrder.IncomeTaxRate;
-            await garmentCorrection.Create(dataCorrect.GarmentCorrectionNote);
+        //    var dataCorrect = await dataUtilCorrection.GetNewData(dataDO);
+        //    dataCorrect.GarmentCorrectionNote.UseVat = true;
+        //    dataCorrect.GarmentCorrectionNote.UseIncomeTax = true;
+        //    dataCorrect.GarmentCorrectionNote.IncomeTaxId = (long)dataCorrect.GarmentDeliveryOrder.IncomeTaxId;
+        //    dataCorrect.GarmentCorrectionNote.IncomeTaxName = dataCorrect.GarmentDeliveryOrder.IncomeTaxName;
+        //    dataCorrect.GarmentCorrectionNote.IncomeTaxRate = (decimal)dataCorrect.GarmentDeliveryOrder.IncomeTaxRate;
+        //    await garmentCorrection.Create(dataCorrect.GarmentCorrectionNote);
 
-            DateTime d1 = dataBC.BeacukaiDate.DateTime.AddDays(30);
-            DateTime d2 = dataBC.BeacukaiDate.DateTime.AddDays(30);
+        //    DateTime d1 = dataBC.BeacukaiDate.DateTime.AddDays(30);
+        //    DateTime d2 = dataBC.BeacukaiDate.DateTime.AddDays(30);
 
-            var Response = DataSJ.GenerateExcelGDailyPurchasingReport(null, true, null, null, null,null, 7);
-            Assert.IsType<System.IO.MemoryStream>(Response);
-        }
+        //    var Response = DataSJ.GenerateExcelGDailyPurchasingReport(null, true, null, null, null,null, 7);
+        //    Assert.IsType<System.IO.MemoryStream>(Response);
+        //}
         [Fact]
         public async Task Should_Success_Get_Book_Report()
         {

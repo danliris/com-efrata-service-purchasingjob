@@ -15,7 +15,10 @@ namespace Com.DanLiris.Service.Purchasing.Lib.Interfaces
         ReadResponse<object> Read(int Page = 1, int Size = 25, string Order = "{}", string Keyword = null, string Filter = "{}");
         GarmentUnitExpenditureNoteViewModel ReadById(int id);
 		ExpenditureROViewModel GetROAsalById(int id);
-		Task<int> Create(GarmentUnitExpenditureNote garmentUnitExpenditureNote);
+		Task<GarmentUnitExpenditureNote> Create(GarmentUnitExpenditureNote garmentUnitExpenditureNote);
+        //added 30-NOV-2021
+        Task CreateGPreparing(GarmentUnitExpenditureNote garmentUnitExpenditureNote);
+        //added 30-NOV-2021
         Task<int> Update(int id, GarmentUnitExpenditureNote garmentUnitExpenditureNote);
         Task<int> Delete(int id);
         Task<int> PatchOne(long id, JsonPatchDocument<GarmentUnitExpenditureNote> jsonPatch);

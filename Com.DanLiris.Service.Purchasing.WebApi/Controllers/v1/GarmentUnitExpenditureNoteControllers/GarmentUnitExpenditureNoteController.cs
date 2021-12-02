@@ -181,26 +181,34 @@ namespace Com.DanLiris.Service.Purchasing.WebApi.Controllers.v1.GarmentUnitExpen
 				return StatusCode(General.INTERNAL_ERROR_STATUS_CODE, Result);
 			}
 		}
+
 		[HttpPost]
         public async Task<IActionResult> Post([FromBody]GarmentUnitExpenditureNoteViewModel viewModel)
         {
             try
             {
+                identityService.Token = Request.Headers["Authorization"].First().Replace("Bearer ", "");
                 identityService.Username = User.Claims.Single(p => p.Type.Equals("username")).Value;
+                identityService.TimezoneOffset = int.Parse(Request.Headers["x-timezone-offset"].First());
 
                 if (viewModel.Items!=null)    
                 {
                     viewModel.Items = viewModel.Items.Where(s => s.IsSave).ToList();
                 }
 
-                identityService.TimezoneOffset = int.Parse(Request.Headers["x-timezone-offset"].First());
-
                 IValidateService validateService = (IValidateService)serviceProvider.GetService(typeof(IValidateService));
                 validateService.Validate(viewModel);
 
                 var Model = mapper.Map<GarmentUnitExpenditureNote>(viewModel);
 
-                await facade.Create(Model);
+                var CreatedModel = await facade.Create(Model);
+
+                //added 30-NOV-2021
+                if (CreatedModel != null && CreatedModel.ExpenditureType == "PROSES")
+                {
+                    await facade.CreateGPreparing(CreatedModel);
+                }
+                //added 30-NOV-2021
 
                 Dictionary<string, object> Result =
                     new ResultFormatter(ApiVersion, General.CREATED_STATUS_CODE, General.OK_MESSAGE)
@@ -257,6 +265,7 @@ namespace Com.DanLiris.Service.Purchasing.WebApi.Controllers.v1.GarmentUnitExpen
                 return StatusCode(General.INTERNAL_ERROR_STATUS_CODE, Result);
             }
         }
+
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete([FromRoute]int id)
         {
@@ -431,6 +440,7 @@ namespace Com.DanLiris.Service.Purchasing.WebApi.Controllers.v1.GarmentUnitExpen
                 return StatusCode(General.INTERNAL_ERROR_STATUS_CODE, Result);
             }
         }
+
         [HttpGet("monitoring-out")]
         public IActionResult GetMonitoringOut(DateTime? dateFrom, DateTime? dateTo, string type, int page, int size, string Order = "{}")
         {
@@ -459,6 +469,7 @@ namespace Com.DanLiris.Service.Purchasing.WebApi.Controllers.v1.GarmentUnitExpen
                 return StatusCode(General.INTERNAL_ERROR_STATUS_CODE, Result);
             }
         }
+
         [HttpGet("monitoring-out/download")]
         public IActionResult GetXlsMonOut(DateTime? dateFrom, DateTime? dateTo, string type, int page, int size, string Order = "{}")
         {
