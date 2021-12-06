@@ -80,123 +80,124 @@ namespace Com.DanLiris.Service.Purchasing.Test.Controllers.GarmentReports
 			return (int)response.GetType().GetProperty("StatusCode").GetValue(response, null);
 		}
 
-        [Fact]
-		public void Should_Error_Get_Report_Data()
-		{
-			var mockFacade = new Mock<IMonitoringCorrectionNoteExpenditureFacade>();
-			mockFacade.Setup(x => x.GetMonitoringKeluarNKReport(null, null, 1, 25, "{}", 7, null))
-				.Returns(Tuple.Create(new List<MonitoringCorrectionNoteExpenditureViewModel> { ViewModel }, 25));
+  //      [Fact]
+		//public void Should_Error_Get_Report_Data()
+		//{
+		//	var mockFacade = new Mock<IMonitoringCorrectionNoteExpenditureFacade>();
+		//	mockFacade.Setup(x => x.GetMonitoringKeluarNKReport(null, null, 1, 25, "{}", 7, null))
+		//		.Returns(Tuple.Create(new List<MonitoringCorrectionNoteExpenditureViewModel> { ViewModel }, 25));
 
-			var mockMapper = new Mock<IMapper>();
-			mockMapper.Setup(x => x.Map<List<MonitoringCorrectionNoteExpenditureViewModel>>(It.IsAny<List<MonitoringCorrectionNoteExpenditureViewModel>>()))
-				.Returns(new List<MonitoringCorrectionNoteExpenditureViewModel> { ViewModel });
+		//	var mockMapper = new Mock<IMapper>();
+		//	mockMapper.Setup(x => x.Map<List<MonitoringCorrectionNoteExpenditureViewModel>>(It.IsAny<List<MonitoringCorrectionNoteExpenditureViewModel>>()))
+		//		.Returns(new List<MonitoringCorrectionNoteExpenditureViewModel> { ViewModel });
 
-			var user = new Mock<ClaimsPrincipal>();
-			var claims = new Claim[]
-			{
-				new Claim("username", "unittestusername")
-			};
-			user.Setup(u => u.Claims).Returns(claims);
-            MonitoringCorrectionNoteExpenditureController controller = new MonitoringCorrectionNoteExpenditureController(GetServiceProvider().Object, mockFacade.Object);
-			controller.ControllerContext = new ControllerContext()
-			{
-				HttpContext = new DefaultHttpContext()
-				{
-					User = user.Object
-				}
-			};
-			controller.ControllerContext.HttpContext.Request.Headers["x-timezone-offset"] = "0";
-			var response = controller.GetReport(null, null, null, 1, 25, "{}");
-			Assert.Equal((int)HttpStatusCode.InternalServerError, GetStatusCode(response));
-		}
+		//	var user = new Mock<ClaimsPrincipal>();
+		//	var claims = new Claim[]
+		//	{
+		//		new Claim("username", "unittestusername")
+		//	};
+		//	user.Setup(u => u.Claims).Returns(claims);
+  //          MonitoringCorrectionNoteExpenditureController controller = new MonitoringCorrectionNoteExpenditureController(GetServiceProvider().Object, mockFacade.Object);
+		//	controller.ControllerContext = new ControllerContext()
+		//	{
+		//		HttpContext = new DefaultHttpContext()
+		//		{
+		//			User = user.Object
+		//		}
+		//	};
+		//	controller.ControllerContext.HttpContext.Request.Headers["x-timezone-offset"] = "0";
+		//	var response = controller.GetReport(null, null, null, 1, 25, "{}");
+		//	Assert.Equal((int)HttpStatusCode.InternalServerError, GetStatusCode(response));
+		//}
 
-		[Fact]
-		public void Should_Error_Get_Report_Xls_Data()
-		{
-			var mockFacade = new Mock<IMonitoringCorrectionNoteExpenditureFacade>();
-			mockFacade.Setup(x => x.GetMonitoringKeluarNKReport(null, null, 1, 25, "{}", 7, null))
-				.Returns(Tuple.Create(new List<MonitoringCorrectionNoteExpenditureViewModel> { ViewModel }, 25));
+		//[Fact]
+		//public void Should_Error_Get_Report_Xls_Data()
+		//{
+		//	var mockFacade = new Mock<IMonitoringCorrectionNoteExpenditureFacade>();
+		//	mockFacade.Setup(x => x.GetMonitoringKeluarNKReport(null, null, 1, 25, "{}", 7, null))
+		//		.Returns(Tuple.Create(new List<MonitoringCorrectionNoteExpenditureViewModel> { ViewModel }, 25));
 
-			var mockMapper = new Mock<IMapper>();
-			mockMapper.Setup(x => x.Map<List<MonitoringCorrectionNoteExpenditureViewModel>>(It.IsAny<List<MonitoringCorrectionNoteExpenditureViewModel>>()))
-				.Returns(new List<MonitoringCorrectionNoteExpenditureViewModel> { ViewModel });
+		//	var mockMapper = new Mock<IMapper>();
+		//	mockMapper.Setup(x => x.Map<List<MonitoringCorrectionNoteExpenditureViewModel>>(It.IsAny<List<MonitoringCorrectionNoteExpenditureViewModel>>()))
+		//		.Returns(new List<MonitoringCorrectionNoteExpenditureViewModel> { ViewModel });
 
-			var user = new Mock<ClaimsPrincipal>();
-			var claims = new Claim[]
-			{
-				new Claim("username", "unittestusername")
-			};
-			user.Setup(u => u.Claims).Returns(claims);
-            MonitoringCorrectionNoteExpenditureController controller = new MonitoringCorrectionNoteExpenditureController(GetServiceProvider().Object, mockFacade.Object);
-			controller.ControllerContext = new ControllerContext()
-			{
-				HttpContext = new DefaultHttpContext()
-				{
-					User = user.Object
-				}
-			};
-			controller.ControllerContext.HttpContext.Request.Headers["x-timezone-offset"] = "0";
-			var response = controller.GetXls(null, null, null, 1, 25, "{}");
-			Assert.Equal((int)HttpStatusCode.InternalServerError, GetStatusCode(response));
-		}
-		[Fact]
-		public void Should_Error_Get_Report_By_User_Data()
-		{
-			var mockFacade = new Mock<IMonitoringCorrectionNoteExpenditureFacade>();
-			mockFacade.Setup(x => x.GetMonitoringKeluarNKByUserReport(null, null, 1, 25, "{}", 7, null))
-				.Returns(Tuple.Create(new List<MonitoringCorrectionNoteExpenditureViewModel> { ViewModel }, 25));
+		//	var user = new Mock<ClaimsPrincipal>();
+		//	var claims = new Claim[]
+		//	{
+		//		new Claim("username", "unittestusername")
+		//	};
+		//	user.Setup(u => u.Claims).Returns(claims);
+  //          MonitoringCorrectionNoteExpenditureController controller = new MonitoringCorrectionNoteExpenditureController(GetServiceProvider().Object, mockFacade.Object);
+		//	controller.ControllerContext = new ControllerContext()
+		//	{
+		//		HttpContext = new DefaultHttpContext()
+		//		{
+		//			User = user.Object
+		//		}
+		//	};
+		//	controller.ControllerContext.HttpContext.Request.Headers["x-timezone-offset"] = "0";
+		//	var response = controller.GetXls(null, null, null, 1, 25, "{}");
+		//	Assert.Equal((int)HttpStatusCode.InternalServerError, GetStatusCode(response));
+		//}
 
-			var mockMapper = new Mock<IMapper>();
-			mockMapper.Setup(x => x.Map<List<MonitoringCorrectionNoteExpenditureViewModel>>(It.IsAny<List<MonitoringCorrectionNoteExpenditureViewModel>>()))
-				.Returns(new List<MonitoringCorrectionNoteExpenditureViewModel> { ViewModel });
+		//[Fact]
+		//public void Should_Error_Get_Report_By_User_Data()
+		//{
+		//	var mockFacade = new Mock<IMonitoringCorrectionNoteExpenditureFacade>();
+		//	mockFacade.Setup(x => x.GetMonitoringKeluarNKByUserReport(null, null, 1, 25, "{}", 7, null))
+		//		.Returns(Tuple.Create(new List<MonitoringCorrectionNoteExpenditureViewModel> { ViewModel }, 25));
 
-			var user = new Mock<ClaimsPrincipal>();
-			var claims = new Claim[]
-			{
-				new Claim("username", "unittestusername")
-			};
-			user.Setup(u => u.Claims).Returns(claims);
-            MonitoringCorrectionNoteExpenditureController controller = new MonitoringCorrectionNoteExpenditureController(GetServiceProvider().Object, mockFacade.Object);
-			controller.ControllerContext = new ControllerContext()
-			{
-				HttpContext = new DefaultHttpContext()
-				{
-					User = user.Object
-				}
-			};
-			controller.ControllerContext.HttpContext.Request.Headers["x-timezone-offset"] = "0";
-			var response = controller.GetReportByUser(null, null, null, null, 1, 25, "{}");
-			Assert.Equal((int)HttpStatusCode.InternalServerError, GetStatusCode(response));
-		}
+		//	var mockMapper = new Mock<IMapper>();
+		//	mockMapper.Setup(x => x.Map<List<MonitoringCorrectionNoteExpenditureViewModel>>(It.IsAny<List<MonitoringCorrectionNoteExpenditureViewModel>>()))
+		//		.Returns(new List<MonitoringCorrectionNoteExpenditureViewModel> { ViewModel });
 
-		[Fact]
-		public void Should_Error_Get_Report_By_User_Xls_Data()
-		{
-			var mockFacade = new Mock<IMonitoringCorrectionNoteExpenditureFacade>();
-			mockFacade.Setup(x => x.GetMonitoringKeluarNKByUserReport(null, null, 1, 25, "{}", 7, null))
-				.Returns(Tuple.Create(new List<MonitoringCorrectionNoteExpenditureViewModel> { ViewModel }, 25));
+		//	var user = new Mock<ClaimsPrincipal>();
+		//	var claims = new Claim[]
+		//	{
+		//		new Claim("username", "unittestusername")
+		//	};
+		//	user.Setup(u => u.Claims).Returns(claims);
+  //          MonitoringCorrectionNoteExpenditureController controller = new MonitoringCorrectionNoteExpenditureController(GetServiceProvider().Object, mockFacade.Object);
+		//	controller.ControllerContext = new ControllerContext()
+		//	{
+		//		HttpContext = new DefaultHttpContext()
+		//		{
+		//			User = user.Object
+		//		}
+		//	};
+		//	controller.ControllerContext.HttpContext.Request.Headers["x-timezone-offset"] = "0";
+		//	var response = controller.GetReportByUser(null, null, null, null, 1, 25, "{}");
+		//	Assert.Equal((int)HttpStatusCode.InternalServerError, GetStatusCode(response));
+		//}
 
-			var mockMapper = new Mock<IMapper>();
-			mockMapper.Setup(x => x.Map<List<MonitoringCorrectionNoteExpenditureViewModel>>(It.IsAny<List<MonitoringCorrectionNoteExpenditureViewModel>>()))
-				.Returns(new List<MonitoringCorrectionNoteExpenditureViewModel> { ViewModel });
+		//[Fact]
+		//public void Should_Error_Get_Report_By_User_Xls_Data()
+		//{
+		//	var mockFacade = new Mock<IMonitoringCorrectionNoteExpenditureFacade>();
+		//	mockFacade.Setup(x => x.GetMonitoringKeluarNKByUserReport(null, null, 1, 25, "{}", 7, null))
+		//		.Returns(Tuple.Create(new List<MonitoringCorrectionNoteExpenditureViewModel> { ViewModel }, 25));
 
-			var user = new Mock<ClaimsPrincipal>();
-			var claims = new Claim[]
-			{
-				new Claim("username", "unittestusername")
-			};
-			user.Setup(u => u.Claims).Returns(claims);
-            MonitoringCorrectionNoteExpenditureController controller = new MonitoringCorrectionNoteExpenditureController(GetServiceProvider().Object, mockFacade.Object);
-			controller.ControllerContext = new ControllerContext()
-			{
-				HttpContext = new DefaultHttpContext()
-				{
-					User = user.Object
-				}
-			};
-			controller.ControllerContext.HttpContext.Request.Headers["x-timezone-offset"] = "0";
-			var response = controller.GetXlsByUser(null, null, null, null, 1, 25, "{}");
-			Assert.Equal((int)HttpStatusCode.InternalServerError, GetStatusCode(response));
-		}
+		//	var mockMapper = new Mock<IMapper>();
+		//	mockMapper.Setup(x => x.Map<List<MonitoringCorrectionNoteExpenditureViewModel>>(It.IsAny<List<MonitoringCorrectionNoteExpenditureViewModel>>()))
+		//		.Returns(new List<MonitoringCorrectionNoteExpenditureViewModel> { ViewModel });
+
+		//	var user = new Mock<ClaimsPrincipal>();
+		//	var claims = new Claim[]
+		//	{
+		//		new Claim("username", "unittestusername")
+		//	};
+		//	user.Setup(u => u.Claims).Returns(claims);
+  //          MonitoringCorrectionNoteExpenditureController controller = new MonitoringCorrectionNoteExpenditureController(GetServiceProvider().Object, mockFacade.Object);
+		//	controller.ControllerContext = new ControllerContext()
+		//	{
+		//		HttpContext = new DefaultHttpContext()
+		//		{
+		//			User = user.Object
+		//		}
+		//	};
+		//	controller.ControllerContext.HttpContext.Request.Headers["x-timezone-offset"] = "0";
+		//	var response = controller.GetXlsByUser(null, null, null, null, 1, 25, "{}");
+		//	Assert.Equal((int)HttpStatusCode.InternalServerError, GetStatusCode(response));
+		//}
 	}
 }

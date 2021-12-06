@@ -1675,7 +1675,6 @@ namespace Com.DanLiris.Service.Purchasing.Lib.Facades.UnitReceiptNoteFacade
             return Query;
         }
 
-
         public ReadResponse<UnitNoteSpbViewModel> GetSpbReport(string urnNo, string supplierName, string doNo, DateTime? dateFrom, DateTime? dateTo, int size, int page, string Order, int offset)
         {
             var Query = GetSpbQuery(urnNo, supplierName, doNo, dateFrom, dateTo, offset);
@@ -1692,7 +1691,6 @@ namespace Com.DanLiris.Service.Purchasing.Lib.Facades.UnitReceiptNoteFacade
 
             return new ReadResponse<UnitNoteSpbViewModel>(Data, TotalData, OrderDictionary);
         }
-
 
         public MemoryStream GenerateExcelSpb(string urnNo, string supplierName, string doNo, DateTime? dateFrom, DateTime? dateTo, int offset)
         {

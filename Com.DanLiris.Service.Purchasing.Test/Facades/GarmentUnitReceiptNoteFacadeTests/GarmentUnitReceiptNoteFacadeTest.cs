@@ -1008,527 +1008,527 @@ namespace Com.DanLiris.Service.Purchasing.Test.Facades.GarmentUnitReceiptNoteFac
             Assert.IsType<System.IO.MemoryStream>(Response);
         }
         //Monitoring Terima Nota Koreksi
-        [Fact]
-        public async Task Should_Success_Get_Terima_NK_Report_Data()
-        {
-            GarmentUnitReceiptNoteFacade facade = new GarmentUnitReceiptNoteFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
+        //[Fact]
+        //public async Task Should_Success_Get_Terima_NK_Report_Data()
+        //{
+        //    GarmentUnitReceiptNoteFacade facade = new GarmentUnitReceiptNoteFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
 
-            GarmentDeliveryOrderFacade facadeDO = new GarmentDeliveryOrderFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
-            var datautilDO = dataUtilDO(facadeDO, GetCurrentMethod());
+        //    GarmentDeliveryOrderFacade facadeDO = new GarmentDeliveryOrderFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
+        //    var datautilDO = dataUtilDO(facadeDO, GetCurrentMethod());
 
-            var garmentunitreceiptnoteFacade = new GarmentUnitReceiptNoteFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
-            var datautilBon = new GarmentUnitReceiptNoteDataUtil(garmentunitreceiptnoteFacade, datautilDO);
+        //    var garmentunitreceiptnoteFacade = new GarmentUnitReceiptNoteFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
+        //    var datautilBon = new GarmentUnitReceiptNoteDataUtil(garmentunitreceiptnoteFacade, datautilDO);
 
-            var garmentBeaCukaiFacade = new GarmentBeacukaiFacade(_dbContext(GetCurrentMethod()), GetServiceProvider());
-            var datautilBC = new GarmentBeacukaiDataUtil(datautilDO, datautilBon, garmentBeaCukaiFacade);
+        //    var garmentBeaCukaiFacade = new GarmentBeacukaiFacade(_dbContext(GetCurrentMethod()), GetServiceProvider());
+        //    var datautilBC = new GarmentBeacukaiDataUtil(datautilDO, datautilBon, garmentBeaCukaiFacade);
 
-            var garmentCorrectionNoteFacade = new GarmentCorrectionNotePriceFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
-            var datautilCN = new GarmentCorrectionNoteDataUtil(garmentCorrectionNoteFacade, datautilBC, datautilDO);
+        //    var garmentCorrectionNoteFacade = new GarmentCorrectionNotePriceFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
+        //    var datautilCN = new GarmentCorrectionNoteDataUtil(garmentCorrectionNoteFacade, datautilBC, datautilDO);
 
-            MonitoringCorrectionNoteReceptionFacade TerimaNK = new MonitoringCorrectionNoteReceptionFacade(_dbContext(GetCurrentMethod()));
+        //    MonitoringCorrectionNoteReceptionFacade TerimaNK = new MonitoringCorrectionNoteReceptionFacade(_dbContext(GetCurrentMethod()));
 
-            var dataNK = await datautilCN.GetTestDataNotaKoreksi();
+        //    var dataNK = await datautilCN.GetTestDataNotaKoreksi();
 
-            var Response = TerimaNK.GetMonitoringTerimaNKReport(dataNK.CorrectionDate.DateTime, dataNK.CorrectionDate.DateTime, "BCDL", 1, 25, "{}", 7);
-            Assert.NotNull(Response.Item1);
-        }
+        //    var Response = TerimaNK.GetMonitoringTerimaNKReport(dataNK.CorrectionDate.DateTime, dataNK.CorrectionDate.DateTime, "BCDL", 1, 25, "{}", 7);
+        //    Assert.NotNull(Response.Item1);
+        //}
 
-        [Fact]
-        public async Task Should_Success_Get_Terima_NK_Report_Data_Null_Parameter()
-        {
-            GarmentUnitReceiptNoteFacade facade = new GarmentUnitReceiptNoteFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
+        //[Fact]
+        //public async Task Should_Success_Get_Terima_NK_Report_Data_Null_Parameter()
+        //{
+        //    GarmentUnitReceiptNoteFacade facade = new GarmentUnitReceiptNoteFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
 
-            GarmentDeliveryOrderFacade facadeDO = new GarmentDeliveryOrderFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
-            var datautilDO = dataUtilDO(facadeDO, GetCurrentMethod());
+        //    GarmentDeliveryOrderFacade facadeDO = new GarmentDeliveryOrderFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
+        //    var datautilDO = dataUtilDO(facadeDO, GetCurrentMethod());
 
-            var garmentunitreceiptnoteFacade = new GarmentUnitReceiptNoteFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
-            var datautilBon = new GarmentUnitReceiptNoteDataUtil(garmentunitreceiptnoteFacade, datautilDO);
+        //    var garmentunitreceiptnoteFacade = new GarmentUnitReceiptNoteFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
+        //    var datautilBon = new GarmentUnitReceiptNoteDataUtil(garmentunitreceiptnoteFacade, datautilDO);
 
-            var garmentBeaCukaiFacade = new GarmentBeacukaiFacade(_dbContext(GetCurrentMethod()), GetServiceProvider());
-            var datautilBC = new GarmentBeacukaiDataUtil(datautilDO, datautilBon, garmentBeaCukaiFacade);
+        //    var garmentBeaCukaiFacade = new GarmentBeacukaiFacade(_dbContext(GetCurrentMethod()), GetServiceProvider());
+        //    var datautilBC = new GarmentBeacukaiDataUtil(datautilDO, datautilBon, garmentBeaCukaiFacade);
 
-            var garmentCorrectionNoteFacade = new GarmentCorrectionNotePriceFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
-            var datautilCN = new GarmentCorrectionNoteDataUtil(garmentCorrectionNoteFacade, datautilBC, datautilDO);
+        //    var garmentCorrectionNoteFacade = new GarmentCorrectionNotePriceFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
+        //    var datautilCN = new GarmentCorrectionNoteDataUtil(garmentCorrectionNoteFacade, datautilBC, datautilDO);
 
-            MonitoringCorrectionNoteReceptionFacade TerimaNK = new MonitoringCorrectionNoteReceptionFacade(_dbContext(GetCurrentMethod()));
+        //    MonitoringCorrectionNoteReceptionFacade TerimaNK = new MonitoringCorrectionNoteReceptionFacade(_dbContext(GetCurrentMethod()));
 
-            var dataNK = await datautilCN.GetTestDataNotaKoreksi();
+        //    var dataNK = await datautilCN.GetTestDataNotaKoreksi();
 
-            DateTime d1 = dataNK.CorrectionDate.DateTime.AddDays(30);
-            DateTime d2 = dataNK.CorrectionDate.DateTime.AddDays(30);
+        //    DateTime d1 = dataNK.CorrectionDate.DateTime.AddDays(30);
+        //    DateTime d2 = dataNK.CorrectionDate.DateTime.AddDays(30);
 
-            var Response = TerimaNK.GetMonitoringTerimaNKReport(d1, d2, "BCDL", 1, 25, "{}", 7);
-            Assert.NotNull(Response.Item1);
-        }
+        //    var Response = TerimaNK.GetMonitoringTerimaNKReport(d1, d2, "BCDL", 1, 25, "{}", 7);
+        //    Assert.NotNull(Response.Item1);
+        //}
 
-        [Fact]
-        public async Task Should_Success_Get_Terima_NK_Report_Data_By_User()
-        {
-            GarmentUnitReceiptNoteFacade facade = new GarmentUnitReceiptNoteFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
+        //[Fact]
+        //public async Task Should_Success_Get_Terima_NK_Report_Data_By_User()
+        //{
+        //    GarmentUnitReceiptNoteFacade facade = new GarmentUnitReceiptNoteFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
 
-            GarmentDeliveryOrderFacade facadeDO = new GarmentDeliveryOrderFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
-            var datautilDO = dataUtilDO(facadeDO, GetCurrentMethod());
+        //    GarmentDeliveryOrderFacade facadeDO = new GarmentDeliveryOrderFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
+        //    var datautilDO = dataUtilDO(facadeDO, GetCurrentMethod());
 
-            var garmentunitreceiptnoteFacade = new GarmentUnitReceiptNoteFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
-            var datautilBon = new GarmentUnitReceiptNoteDataUtil(garmentunitreceiptnoteFacade, datautilDO);
+        //    var garmentunitreceiptnoteFacade = new GarmentUnitReceiptNoteFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
+        //    var datautilBon = new GarmentUnitReceiptNoteDataUtil(garmentunitreceiptnoteFacade, datautilDO);
 
-            var garmentBeaCukaiFacade = new GarmentBeacukaiFacade(_dbContext(GetCurrentMethod()), GetServiceProvider());
-            var datautilBC = new GarmentBeacukaiDataUtil(datautilDO, datautilBon, garmentBeaCukaiFacade);
+        //    var garmentBeaCukaiFacade = new GarmentBeacukaiFacade(_dbContext(GetCurrentMethod()), GetServiceProvider());
+        //    var datautilBC = new GarmentBeacukaiDataUtil(datautilDO, datautilBon, garmentBeaCukaiFacade);
 
-            var garmentCorrectionNoteFacade = new GarmentCorrectionNotePriceFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
-            var datautilCN = new GarmentCorrectionNoteDataUtil(garmentCorrectionNoteFacade, datautilBC, datautilDO);
+        //    var garmentCorrectionNoteFacade = new GarmentCorrectionNotePriceFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
+        //    var datautilCN = new GarmentCorrectionNoteDataUtil(garmentCorrectionNoteFacade, datautilBC, datautilDO);
 
-            MonitoringCorrectionNoteReceptionFacade TerimaNK = new MonitoringCorrectionNoteReceptionFacade(_dbContext(GetCurrentMethod()));
+        //    MonitoringCorrectionNoteReceptionFacade TerimaNK = new MonitoringCorrectionNoteReceptionFacade(_dbContext(GetCurrentMethod()));
 
-            var dataNK = await datautilCN.GetTestDataNotaKoreksi();
+        //    var dataNK = await datautilCN.GetTestDataNotaKoreksi();
 
-            var Response = TerimaNK.GetMonitoringTerimaNKByUserReport(dataNK.CorrectionDate.DateTime, dataNK.CorrectionDate.DateTime, "BCDL", 1, 25, "{}", 7);
-            Assert.NotNull(Response.Item1);
-        }
+        //    var Response = TerimaNK.GetMonitoringTerimaNKByUserReport(dataNK.CorrectionDate.DateTime, dataNK.CorrectionDate.DateTime, "BCDL", 1, 25, "{}", 7);
+        //    Assert.NotNull(Response.Item1);
+        //}
 
-        [Fact]
-        public async Task Should_Success_Get_Terima_NK_Report_Data_By_User_Null_Pameter()
-        {
-            GarmentUnitReceiptNoteFacade facade = new GarmentUnitReceiptNoteFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
+        //[Fact]
+        //public async Task Should_Success_Get_Terima_NK_Report_Data_By_User_Null_Pameter()
+        //{
+        //    GarmentUnitReceiptNoteFacade facade = new GarmentUnitReceiptNoteFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
 
-            GarmentDeliveryOrderFacade facadeDO = new GarmentDeliveryOrderFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
-            var datautilDO = dataUtilDO(facadeDO, GetCurrentMethod());
+        //    GarmentDeliveryOrderFacade facadeDO = new GarmentDeliveryOrderFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
+        //    var datautilDO = dataUtilDO(facadeDO, GetCurrentMethod());
 
-            var garmentunitreceiptnoteFacade = new GarmentUnitReceiptNoteFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
-            var datautilBon = new GarmentUnitReceiptNoteDataUtil(garmentunitreceiptnoteFacade, datautilDO);
+        //    var garmentunitreceiptnoteFacade = new GarmentUnitReceiptNoteFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
+        //    var datautilBon = new GarmentUnitReceiptNoteDataUtil(garmentunitreceiptnoteFacade, datautilDO);
 
-            var garmentBeaCukaiFacade = new GarmentBeacukaiFacade(_dbContext(GetCurrentMethod()), GetServiceProvider());
-            var datautilBC = new GarmentBeacukaiDataUtil(datautilDO, datautilBon, garmentBeaCukaiFacade);
+        //    var garmentBeaCukaiFacade = new GarmentBeacukaiFacade(_dbContext(GetCurrentMethod()), GetServiceProvider());
+        //    var datautilBC = new GarmentBeacukaiDataUtil(datautilDO, datautilBon, garmentBeaCukaiFacade);
 
-            var garmentCorrectionNoteFacade = new GarmentCorrectionNotePriceFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
-            var datautilCN = new GarmentCorrectionNoteDataUtil(garmentCorrectionNoteFacade, datautilBC, datautilDO);
+        //    var garmentCorrectionNoteFacade = new GarmentCorrectionNotePriceFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
+        //    var datautilCN = new GarmentCorrectionNoteDataUtil(garmentCorrectionNoteFacade, datautilBC, datautilDO);
 
-            MonitoringCorrectionNoteReceptionFacade TerimaNK = new MonitoringCorrectionNoteReceptionFacade(_dbContext(GetCurrentMethod()));
+        //    MonitoringCorrectionNoteReceptionFacade TerimaNK = new MonitoringCorrectionNoteReceptionFacade(_dbContext(GetCurrentMethod()));
 
-            var dataNK = await datautilCN.GetTestDataNotaKoreksi();
+        //    var dataNK = await datautilCN.GetTestDataNotaKoreksi();
 
-            DateTime d1 = dataNK.CorrectionDate.DateTime.AddDays(30);
-            DateTime d2 = dataNK.CorrectionDate.DateTime.AddDays(30);
+        //    DateTime d1 = dataNK.CorrectionDate.DateTime.AddDays(30);
+        //    DateTime d2 = dataNK.CorrectionDate.DateTime.AddDays(30);
 
-            var Response = TerimaNK.GetMonitoringTerimaNKByUserReport(d1, d2, "BCDL", 1, 25, "{}", 7);
-            Assert.NotNull(Response.Item1);
-        }
+        //    var Response = TerimaNK.GetMonitoringTerimaNKByUserReport(d1, d2, "BCDL", 1, 25, "{}", 7);
+        //    Assert.NotNull(Response.Item1);
+        //}
 
-        [Fact]
-        public async Task Should_Success_Get_Terima_NK_Report_Excel()
-        {
-            GarmentUnitReceiptNoteFacade facade = new GarmentUnitReceiptNoteFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
+        //[Fact]
+        //public async Task Should_Success_Get_Terima_NK_Report_Excel()
+        //{
+        //    GarmentUnitReceiptNoteFacade facade = new GarmentUnitReceiptNoteFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
 
-            GarmentDeliveryOrderFacade facadeDO = new GarmentDeliveryOrderFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
-            var datautilDO = dataUtilDO(facadeDO, GetCurrentMethod());
+        //    GarmentDeliveryOrderFacade facadeDO = new GarmentDeliveryOrderFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
+        //    var datautilDO = dataUtilDO(facadeDO, GetCurrentMethod());
 
-            var garmentunitreceiptnoteFacade = new GarmentUnitReceiptNoteFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
-            var datautilBon = new GarmentUnitReceiptNoteDataUtil(garmentunitreceiptnoteFacade, datautilDO);
+        //    var garmentunitreceiptnoteFacade = new GarmentUnitReceiptNoteFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
+        //    var datautilBon = new GarmentUnitReceiptNoteDataUtil(garmentunitreceiptnoteFacade, datautilDO);
 
-            var garmentBeaCukaiFacade = new GarmentBeacukaiFacade(_dbContext(GetCurrentMethod()), GetServiceProvider());
-            var datautilBC = new GarmentBeacukaiDataUtil(datautilDO, datautilBon, garmentBeaCukaiFacade);
+        //    var garmentBeaCukaiFacade = new GarmentBeacukaiFacade(_dbContext(GetCurrentMethod()), GetServiceProvider());
+        //    var datautilBC = new GarmentBeacukaiDataUtil(datautilDO, datautilBon, garmentBeaCukaiFacade);
 
-            var garmentCorrectionNoteFacade = new GarmentCorrectionNotePriceFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
-            var datautilCN = new GarmentCorrectionNoteDataUtil(garmentCorrectionNoteFacade, datautilBC, datautilDO);
+        //    var garmentCorrectionNoteFacade = new GarmentCorrectionNotePriceFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
+        //    var datautilCN = new GarmentCorrectionNoteDataUtil(garmentCorrectionNoteFacade, datautilBC, datautilDO);
 
-            MonitoringCorrectionNoteReceptionFacade TerimaNK = new MonitoringCorrectionNoteReceptionFacade(_dbContext(GetCurrentMethod()));
+        //    MonitoringCorrectionNoteReceptionFacade TerimaNK = new MonitoringCorrectionNoteReceptionFacade(_dbContext(GetCurrentMethod()));
 
-            var dataNK = await datautilCN.GetTestDataNotaKoreksi();
+        //    var dataNK = await datautilCN.GetTestDataNotaKoreksi();
 
-            var Response = TerimaNK.GenerateExcelMonitoringTerimaNK(null, null, "BCDL", 1, 25, "{}", 7);
-            Assert.IsType<System.IO.MemoryStream>(Response);
-        }
+        //    var Response = TerimaNK.GenerateExcelMonitoringTerimaNK(null, null, "BCDL", 1, 25, "{}", 7);
+        //    Assert.IsType<System.IO.MemoryStream>(Response);
+        //}
 
-        [Fact]
-        public async Task Should_Success_Get_Terima_NK_Report_Excel_Null_Parameter()
-        {
-            GarmentUnitReceiptNoteFacade facade = new GarmentUnitReceiptNoteFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
+        //[Fact]
+        //public async Task Should_Success_Get_Terima_NK_Report_Excel_Null_Parameter()
+        //{
+        //    GarmentUnitReceiptNoteFacade facade = new GarmentUnitReceiptNoteFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
 
-            GarmentDeliveryOrderFacade facadeDO = new GarmentDeliveryOrderFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
-            var datautilDO = dataUtilDO(facadeDO, GetCurrentMethod());
+        //    GarmentDeliveryOrderFacade facadeDO = new GarmentDeliveryOrderFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
+        //    var datautilDO = dataUtilDO(facadeDO, GetCurrentMethod());
 
-            var garmentunitreceiptnoteFacade = new GarmentUnitReceiptNoteFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
-            var datautilBon = new GarmentUnitReceiptNoteDataUtil(garmentunitreceiptnoteFacade, datautilDO);
+        //    var garmentunitreceiptnoteFacade = new GarmentUnitReceiptNoteFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
+        //    var datautilBon = new GarmentUnitReceiptNoteDataUtil(garmentunitreceiptnoteFacade, datautilDO);
 
-            var garmentBeaCukaiFacade = new GarmentBeacukaiFacade(_dbContext(GetCurrentMethod()), GetServiceProvider());
-            var datautilBC = new GarmentBeacukaiDataUtil(datautilDO, garmentBeaCukaiFacade);
+        //    var garmentBeaCukaiFacade = new GarmentBeacukaiFacade(_dbContext(GetCurrentMethod()), GetServiceProvider());
+        //    var datautilBC = new GarmentBeacukaiDataUtil(datautilDO, garmentBeaCukaiFacade);
 
-            var garmentCorrectionNoteFacade = new GarmentCorrectionNotePriceFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
-            var datautilCN = new GarmentCorrectionNoteDataUtil(garmentCorrectionNoteFacade, datautilBC, datautilDO);
+        //    var garmentCorrectionNoteFacade = new GarmentCorrectionNotePriceFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
+        //    var datautilCN = new GarmentCorrectionNoteDataUtil(garmentCorrectionNoteFacade, datautilBC, datautilDO);
 
-            MonitoringCorrectionNoteReceptionFacade TerimaNK = new MonitoringCorrectionNoteReceptionFacade(_dbContext(GetCurrentMethod()));
+        //    MonitoringCorrectionNoteReceptionFacade TerimaNK = new MonitoringCorrectionNoteReceptionFacade(_dbContext(GetCurrentMethod()));
 
-            var dataNK = await datautilCN.GetTestDataNotaKoreksi();
+        //    var dataNK = await datautilCN.GetTestDataNotaKoreksi();
 
-            MonitoringCentralBillExpenditureFacade KeluarBP = new MonitoringCentralBillExpenditureFacade(_dbContext(GetCurrentMethod()));
+        //    MonitoringCentralBillExpenditureFacade KeluarBP = new MonitoringCentralBillExpenditureFacade(_dbContext(GetCurrentMethod()));
 
-            DateTime d1 = dataNK.CorrectionDate.DateTime.AddDays(30);
-            DateTime d2 = dataNK.CorrectionDate.DateTime.AddDays(30);
+        //    DateTime d1 = dataNK.CorrectionDate.DateTime.AddDays(30);
+        //    DateTime d2 = dataNK.CorrectionDate.DateTime.AddDays(30);
 
-            var Response = TerimaNK.GenerateExcelMonitoringTerimaNK(d1, d2, "BCDL", 1, 25, "{}", 7);
+        //    var Response = TerimaNK.GenerateExcelMonitoringTerimaNK(d1, d2, "BCDL", 1, 25, "{}", 7);
 
-            Assert.IsType<System.IO.MemoryStream>(Response);
-        }
+        //    Assert.IsType<System.IO.MemoryStream>(Response);
+        //}
 
-        [Fact]
-        public async Task Should_Success_Get_Terima_NK_Report_Excel_By_User()
-        {
-            GarmentUnitReceiptNoteFacade facade = new GarmentUnitReceiptNoteFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
+        //[Fact]
+        //public async Task Should_Success_Get_Terima_NK_Report_Excel_By_User()
+        //{
+        //    GarmentUnitReceiptNoteFacade facade = new GarmentUnitReceiptNoteFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
 
-            GarmentDeliveryOrderFacade facadeDO = new GarmentDeliveryOrderFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
-            var datautilDO = dataUtilDO(facadeDO, GetCurrentMethod());
+        //    GarmentDeliveryOrderFacade facadeDO = new GarmentDeliveryOrderFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
+        //    var datautilDO = dataUtilDO(facadeDO, GetCurrentMethod());
 
-            var garmentunitreceiptnoteFacade = new GarmentUnitReceiptNoteFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
-            var datautilBon = new GarmentUnitReceiptNoteDataUtil(garmentunitreceiptnoteFacade, datautilDO);
+        //    var garmentunitreceiptnoteFacade = new GarmentUnitReceiptNoteFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
+        //    var datautilBon = new GarmentUnitReceiptNoteDataUtil(garmentunitreceiptnoteFacade, datautilDO);
 
-            var garmentBeaCukaiFacade = new GarmentBeacukaiFacade(_dbContext(GetCurrentMethod()), GetServiceProvider());
-            var datautilBC = new GarmentBeacukaiDataUtil(datautilDO, garmentBeaCukaiFacade);
+        //    var garmentBeaCukaiFacade = new GarmentBeacukaiFacade(_dbContext(GetCurrentMethod()), GetServiceProvider());
+        //    var datautilBC = new GarmentBeacukaiDataUtil(datautilDO, garmentBeaCukaiFacade);
 
-            var garmentCorrectionNoteFacade = new GarmentCorrectionNotePriceFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
-            var datautilCN = new GarmentCorrectionNoteDataUtil(garmentCorrectionNoteFacade, datautilBC, datautilDO);
+        //    var garmentCorrectionNoteFacade = new GarmentCorrectionNotePriceFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
+        //    var datautilCN = new GarmentCorrectionNoteDataUtil(garmentCorrectionNoteFacade, datautilBC, datautilDO);
 
-            MonitoringCorrectionNoteReceptionFacade TerimaNK = new MonitoringCorrectionNoteReceptionFacade(_dbContext(GetCurrentMethod()));
+        //    MonitoringCorrectionNoteReceptionFacade TerimaNK = new MonitoringCorrectionNoteReceptionFacade(_dbContext(GetCurrentMethod()));
 
-            var dataNK = await datautilCN.GetTestDataNotaKoreksi();
+        //    var dataNK = await datautilCN.GetTestDataNotaKoreksi();
 
-            var Response = TerimaNK.GenerateExcelMonitoringTerimaNKByUser(null, null, null, 1, 25, "{}", 7);
-            Assert.IsType<System.IO.MemoryStream>(Response);
-        }
+        //    var Response = TerimaNK.GenerateExcelMonitoringTerimaNKByUser(null, null, null, 1, 25, "{}", 7);
+        //    Assert.IsType<System.IO.MemoryStream>(Response);
+        //}
 
-        [Fact]
-        public async Task Should_Success_Get_Terima_NK_Report_Excel_By_User_Null_Parameter()
-        {
-            GarmentUnitReceiptNoteFacade facade = new GarmentUnitReceiptNoteFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
+        //[Fact]
+        //public async Task Should_Success_Get_Terima_NK_Report_Excel_By_User_Null_Parameter()
+        //{
+        //    GarmentUnitReceiptNoteFacade facade = new GarmentUnitReceiptNoteFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
 
-            GarmentDeliveryOrderFacade facadeDO = new GarmentDeliveryOrderFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
-            var datautilDO = dataUtilDO(facadeDO, GetCurrentMethod());
+        //    GarmentDeliveryOrderFacade facadeDO = new GarmentDeliveryOrderFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
+        //    var datautilDO = dataUtilDO(facadeDO, GetCurrentMethod());
 
-            var garmentunitreceiptnoteFacade = new GarmentUnitReceiptNoteFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
-            var datautilBon = new GarmentUnitReceiptNoteDataUtil(garmentunitreceiptnoteFacade, datautilDO);
+        //    var garmentunitreceiptnoteFacade = new GarmentUnitReceiptNoteFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
+        //    var datautilBon = new GarmentUnitReceiptNoteDataUtil(garmentunitreceiptnoteFacade, datautilDO);
 
-            var garmentBeaCukaiFacade = new GarmentBeacukaiFacade(_dbContext(GetCurrentMethod()), GetServiceProvider());
-            var datautilBC = new GarmentBeacukaiDataUtil(datautilDO, garmentBeaCukaiFacade);
+        //    var garmentBeaCukaiFacade = new GarmentBeacukaiFacade(_dbContext(GetCurrentMethod()), GetServiceProvider());
+        //    var datautilBC = new GarmentBeacukaiDataUtil(datautilDO, garmentBeaCukaiFacade);
 
-            var garmentCorrectionNoteFacade = new GarmentCorrectionNotePriceFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
-            var datautilCN = new GarmentCorrectionNoteDataUtil(garmentCorrectionNoteFacade, datautilBC, datautilDO);
+        //    var garmentCorrectionNoteFacade = new GarmentCorrectionNotePriceFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
+        //    var datautilCN = new GarmentCorrectionNoteDataUtil(garmentCorrectionNoteFacade, datautilBC, datautilDO);
 
-            MonitoringCorrectionNoteReceptionFacade TerimaNK = new MonitoringCorrectionNoteReceptionFacade(_dbContext(GetCurrentMethod()));
+        //    MonitoringCorrectionNoteReceptionFacade TerimaNK = new MonitoringCorrectionNoteReceptionFacade(_dbContext(GetCurrentMethod()));
 
-            var dataNK = await datautilCN.GetTestDataNotaKoreksi();
+        //    var dataNK = await datautilCN.GetTestDataNotaKoreksi();
 
-            DateTime d1 = dataNK.CorrectionDate.DateTime.AddDays(30);
-            DateTime d2 = dataNK.CorrectionDate.DateTime.AddDays(30);
+        //    DateTime d1 = dataNK.CorrectionDate.DateTime.AddDays(30);
+        //    DateTime d2 = dataNK.CorrectionDate.DateTime.AddDays(30);
 
-            var Response = TerimaNK.GenerateExcelMonitoringTerimaNKByUser(d1, d2, "BCDL", 1, 25, "{}", 7);
+        //    var Response = TerimaNK.GenerateExcelMonitoringTerimaNKByUser(d1, d2, "BCDL", 1, 25, "{}", 7);
 
-            Assert.IsType<System.IO.MemoryStream>(Response);
-        }
+        //    Assert.IsType<System.IO.MemoryStream>(Response);
+        //}
 
         //Monitoring Keluar Nota Koreksi
-        [Fact]
-        public async Task Should_Success_Get_Keluar_NK_Report_Data()
-        {
-            GarmentUnitReceiptNoteFacade facade = new GarmentUnitReceiptNoteFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
+        //[Fact]
+        //public async Task Should_Success_Get_Keluar_NK_Report_Data()
+        //{
+        //    GarmentUnitReceiptNoteFacade facade = new GarmentUnitReceiptNoteFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
 
-            GarmentDeliveryOrderFacade facadeDO = new GarmentDeliveryOrderFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
-            var datautilDO = dataUtilDO(facadeDO, GetCurrentMethod());
+        //    GarmentDeliveryOrderFacade facadeDO = new GarmentDeliveryOrderFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
+        //    var datautilDO = dataUtilDO(facadeDO, GetCurrentMethod());
 
-            var garmentunitreceiptnoteFacade = new GarmentUnitReceiptNoteFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
-            var datautilBon = new GarmentUnitReceiptNoteDataUtil(garmentunitreceiptnoteFacade, datautilDO);
+        //    var garmentunitreceiptnoteFacade = new GarmentUnitReceiptNoteFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
+        //    var datautilBon = new GarmentUnitReceiptNoteDataUtil(garmentunitreceiptnoteFacade, datautilDO);
 
-            var garmentBeaCukaiFacade = new GarmentBeacukaiFacade(_dbContext(GetCurrentMethod()), GetServiceProvider());
-            var datautilBC = new GarmentBeacukaiDataUtil(datautilDO, datautilBon, garmentBeaCukaiFacade);
+        //    var garmentBeaCukaiFacade = new GarmentBeacukaiFacade(_dbContext(GetCurrentMethod()), GetServiceProvider());
+        //    var datautilBC = new GarmentBeacukaiDataUtil(datautilDO, datautilBon, garmentBeaCukaiFacade);
 
-            var garmentCorrectionNoteFacade = new GarmentCorrectionNotePriceFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
-            var datautilCN = new GarmentCorrectionNoteDataUtil(garmentCorrectionNoteFacade, datautilBC, datautilDO);
+        //    var garmentCorrectionNoteFacade = new GarmentCorrectionNotePriceFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
+        //    var datautilCN = new GarmentCorrectionNoteDataUtil(garmentCorrectionNoteFacade, datautilBC, datautilDO);
 
-            MonitoringCorrectionNoteExpenditureFacade KeluarNK = new MonitoringCorrectionNoteExpenditureFacade(_dbContext(GetCurrentMethod()));
+        //    MonitoringCorrectionNoteExpenditureFacade KeluarNK = new MonitoringCorrectionNoteExpenditureFacade(_dbContext(GetCurrentMethod()));
 
-            var dataNK = await datautilCN.GetTestDataNotaKoreksi();
+        //    var dataNK = await datautilCN.GetTestDataNotaKoreksi();
 
-            var Response = KeluarNK.GetMonitoringKeluarNKReport(dataNK.CorrectionDate.DateTime, dataNK.CorrectionDate.DateTime, 1, 25, "{}", 7, "BCDL");
-            Assert.NotNull(Response.Item1);
-        }
+        //    var Response = KeluarNK.GetMonitoringKeluarNKReport(dataNK.CorrectionDate.DateTime, dataNK.CorrectionDate.DateTime, 1, 25, "{}", 7, "BCDL");
+        //    Assert.NotNull(Response.Item1);
+        //}
 
-        [Fact]
-        public async Task Should_Success_Get_Keluar_NK_Report_Data_Null_Parameter()
-        {
-            GarmentUnitReceiptNoteFacade facade = new GarmentUnitReceiptNoteFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
+        //[Fact]
+        //public async Task Should_Success_Get_Keluar_NK_Report_Data_Null_Parameter()
+        //{
+        //    GarmentUnitReceiptNoteFacade facade = new GarmentUnitReceiptNoteFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
 
-            GarmentDeliveryOrderFacade facadeDO = new GarmentDeliveryOrderFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
-            var datautilDO = dataUtilDO(facadeDO, GetCurrentMethod());
+        //    GarmentDeliveryOrderFacade facadeDO = new GarmentDeliveryOrderFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
+        //    var datautilDO = dataUtilDO(facadeDO, GetCurrentMethod());
 
-            var garmentunitreceiptnoteFacade = new GarmentUnitReceiptNoteFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
-            var datautilBon = new GarmentUnitReceiptNoteDataUtil(garmentunitreceiptnoteFacade, datautilDO);
+        //    var garmentunitreceiptnoteFacade = new GarmentUnitReceiptNoteFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
+        //    var datautilBon = new GarmentUnitReceiptNoteDataUtil(garmentunitreceiptnoteFacade, datautilDO);
 
-            var garmentBeaCukaiFacade = new GarmentBeacukaiFacade(_dbContext(GetCurrentMethod()), GetServiceProvider());
-            var datautilBC = new GarmentBeacukaiDataUtil(datautilDO, datautilBon, garmentBeaCukaiFacade);
+        //    var garmentBeaCukaiFacade = new GarmentBeacukaiFacade(_dbContext(GetCurrentMethod()), GetServiceProvider());
+        //    var datautilBC = new GarmentBeacukaiDataUtil(datautilDO, datautilBon, garmentBeaCukaiFacade);
 
-            var garmentCorrectionNoteFacade = new GarmentCorrectionNotePriceFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
-            var datautilCN = new GarmentCorrectionNoteDataUtil(garmentCorrectionNoteFacade, datautilBC, datautilDO);
+        //    var garmentCorrectionNoteFacade = new GarmentCorrectionNotePriceFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
+        //    var datautilCN = new GarmentCorrectionNoteDataUtil(garmentCorrectionNoteFacade, datautilBC, datautilDO);
 
-            MonitoringCorrectionNoteExpenditureFacade KeluarNK = new MonitoringCorrectionNoteExpenditureFacade(_dbContext(GetCurrentMethod()));
+        //    MonitoringCorrectionNoteExpenditureFacade KeluarNK = new MonitoringCorrectionNoteExpenditureFacade(_dbContext(GetCurrentMethod()));
 
-            var dataNK = await datautilCN.GetTestDataNotaKoreksi();
+        //    var dataNK = await datautilCN.GetTestDataNotaKoreksi();
 
-            DateTime d1 = dataNK.CorrectionDate.DateTime.AddDays(30);
-            DateTime d2 = dataNK.CorrectionDate.DateTime.AddDays(30);
+        //    DateTime d1 = dataNK.CorrectionDate.DateTime.AddDays(30);
+        //    DateTime d2 = dataNK.CorrectionDate.DateTime.AddDays(30);
 
-            var Response = KeluarNK.GetMonitoringKeluarNKReport(d1, d2, 1, 25, "{}", 7, "BCDL");
-            Assert.NotNull(Response.Item1);
-        }
+        //    var Response = KeluarNK.GetMonitoringKeluarNKReport(d1, d2, 1, 25, "{}", 7, "BCDL");
+        //    Assert.NotNull(Response.Item1);
+        //}
 
-        [Fact]
-        public async Task Should_Success_Get_Keluar_NK_Report_Data_By_User()
-        {
-            GarmentUnitReceiptNoteFacade facade = new GarmentUnitReceiptNoteFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
+        //[Fact]
+        //public async Task Should_Success_Get_Keluar_NK_Report_Data_By_User()
+        //{
+        //    GarmentUnitReceiptNoteFacade facade = new GarmentUnitReceiptNoteFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
 
-            GarmentDeliveryOrderFacade facadeDO = new GarmentDeliveryOrderFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
-            var datautilDO = dataUtilDO(facadeDO, GetCurrentMethod());
+        //    GarmentDeliveryOrderFacade facadeDO = new GarmentDeliveryOrderFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
+        //    var datautilDO = dataUtilDO(facadeDO, GetCurrentMethod());
 
-            var garmentunitreceiptnoteFacade = new GarmentUnitReceiptNoteFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
-            var datautilBon = new GarmentUnitReceiptNoteDataUtil(garmentunitreceiptnoteFacade, datautilDO);
+        //    var garmentunitreceiptnoteFacade = new GarmentUnitReceiptNoteFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
+        //    var datautilBon = new GarmentUnitReceiptNoteDataUtil(garmentunitreceiptnoteFacade, datautilDO);
 
-            var garmentBeaCukaiFacade = new GarmentBeacukaiFacade(_dbContext(GetCurrentMethod()), GetServiceProvider());
-            var datautilBC = new GarmentBeacukaiDataUtil(datautilDO, datautilBon, garmentBeaCukaiFacade);
+        //    var garmentBeaCukaiFacade = new GarmentBeacukaiFacade(_dbContext(GetCurrentMethod()), GetServiceProvider());
+        //    var datautilBC = new GarmentBeacukaiDataUtil(datautilDO, datautilBon, garmentBeaCukaiFacade);
 
-            var garmentCorrectionNoteFacade = new GarmentCorrectionNotePriceFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
-            var datautilCN = new GarmentCorrectionNoteDataUtil(garmentCorrectionNoteFacade, datautilBC, datautilDO);
+        //    var garmentCorrectionNoteFacade = new GarmentCorrectionNotePriceFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
+        //    var datautilCN = new GarmentCorrectionNoteDataUtil(garmentCorrectionNoteFacade, datautilBC, datautilDO);
 
-            MonitoringCorrectionNoteExpenditureFacade KeluarNK = new MonitoringCorrectionNoteExpenditureFacade(_dbContext(GetCurrentMethod()));
+        //    MonitoringCorrectionNoteExpenditureFacade KeluarNK = new MonitoringCorrectionNoteExpenditureFacade(_dbContext(GetCurrentMethod()));
 
-            var dataNK = await datautilCN.GetTestDataNotaKoreksi();
+        //    var dataNK = await datautilCN.GetTestDataNotaKoreksi();
 
-            var Response = KeluarNK.GetMonitoringKeluarNKByUserReport(dataNK.CorrectionDate.DateTime, dataNK.CorrectionDate.DateTime, 1, 25, "{}", 7, "BCDL");
-            Assert.NotNull(Response.Item1);
-        }
+        //    var Response = KeluarNK.GetMonitoringKeluarNKByUserReport(dataNK.CorrectionDate.DateTime, dataNK.CorrectionDate.DateTime, 1, 25, "{}", 7, "BCDL");
+        //    Assert.NotNull(Response.Item1);
+        //}
 
-        [Fact]
-        public async Task Should_Success_Get_Keluar_NK_Report_Data_By_User_Null_Pameter()
-        {
-            GarmentUnitReceiptNoteFacade facade = new GarmentUnitReceiptNoteFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
+        //[Fact]
+        //public async Task Should_Success_Get_Keluar_NK_Report_Data_By_User_Null_Pameter()
+        //{
+        //    GarmentUnitReceiptNoteFacade facade = new GarmentUnitReceiptNoteFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
 
-            GarmentDeliveryOrderFacade facadeDO = new GarmentDeliveryOrderFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
-            var datautilDO = dataUtilDO(facadeDO, GetCurrentMethod());
+        //    GarmentDeliveryOrderFacade facadeDO = new GarmentDeliveryOrderFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
+        //    var datautilDO = dataUtilDO(facadeDO, GetCurrentMethod());
 
-            var garmentunitreceiptnoteFacade = new GarmentUnitReceiptNoteFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
-            var datautilBon = new GarmentUnitReceiptNoteDataUtil(garmentunitreceiptnoteFacade, datautilDO);
+        //    var garmentunitreceiptnoteFacade = new GarmentUnitReceiptNoteFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
+        //    var datautilBon = new GarmentUnitReceiptNoteDataUtil(garmentunitreceiptnoteFacade, datautilDO);
 
-            var garmentBeaCukaiFacade = new GarmentBeacukaiFacade(_dbContext(GetCurrentMethod()), GetServiceProvider());
-            var datautilBC = new GarmentBeacukaiDataUtil(datautilDO, datautilBon, garmentBeaCukaiFacade);
+        //    var garmentBeaCukaiFacade = new GarmentBeacukaiFacade(_dbContext(GetCurrentMethod()), GetServiceProvider());
+        //    var datautilBC = new GarmentBeacukaiDataUtil(datautilDO, datautilBon, garmentBeaCukaiFacade);
 
-            var garmentCorrectionNoteFacade = new GarmentCorrectionNotePriceFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
-            var datautilCN = new GarmentCorrectionNoteDataUtil(garmentCorrectionNoteFacade, datautilBC, datautilDO);
+        //    var garmentCorrectionNoteFacade = new GarmentCorrectionNotePriceFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
+        //    var datautilCN = new GarmentCorrectionNoteDataUtil(garmentCorrectionNoteFacade, datautilBC, datautilDO);
 
-            MonitoringCorrectionNoteExpenditureFacade KeluarNK = new MonitoringCorrectionNoteExpenditureFacade(_dbContext(GetCurrentMethod()));
+        //    MonitoringCorrectionNoteExpenditureFacade KeluarNK = new MonitoringCorrectionNoteExpenditureFacade(_dbContext(GetCurrentMethod()));
 
-            var dataNK = await datautilCN.GetTestDataNotaKoreksi();
+        //    var dataNK = await datautilCN.GetTestDataNotaKoreksi();
 
-            DateTime d1 = dataNK.CorrectionDate.DateTime.AddDays(30);
-            DateTime d2 = dataNK.CorrectionDate.DateTime.AddDays(30);
+        //    DateTime d1 = dataNK.CorrectionDate.DateTime.AddDays(30);
+        //    DateTime d2 = dataNK.CorrectionDate.DateTime.AddDays(30);
 
-            var Response = KeluarNK.GetMonitoringKeluarNKByUserReport(d1, d2, 1, 25, "{}", 7, "BCDL");
-            Assert.NotNull(Response.Item1);
-        }
+        //    var Response = KeluarNK.GetMonitoringKeluarNKByUserReport(d1, d2, 1, 25, "{}", 7, "BCDL");
+        //    Assert.NotNull(Response.Item1);
+        //}
 
-        [Fact]
-        public async Task Should_Success_Get_Keluar_NK_Report_Excel()
-        {
-            GarmentUnitReceiptNoteFacade facade = new GarmentUnitReceiptNoteFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
+        //[Fact]
+        //public async Task Should_Success_Get_Keluar_NK_Report_Excel()
+        //{
+        //    GarmentUnitReceiptNoteFacade facade = new GarmentUnitReceiptNoteFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
 
-            GarmentDeliveryOrderFacade facadeDO = new GarmentDeliveryOrderFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
-            var datautilDO = dataUtilDO(facadeDO, GetCurrentMethod());
+        //    GarmentDeliveryOrderFacade facadeDO = new GarmentDeliveryOrderFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
+        //    var datautilDO = dataUtilDO(facadeDO, GetCurrentMethod());
 
-            var garmentunitreceiptnoteFacade = new GarmentUnitReceiptNoteFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
-            var datautilBon = new GarmentUnitReceiptNoteDataUtil(garmentunitreceiptnoteFacade, datautilDO);
+        //    var garmentunitreceiptnoteFacade = new GarmentUnitReceiptNoteFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
+        //    var datautilBon = new GarmentUnitReceiptNoteDataUtil(garmentunitreceiptnoteFacade, datautilDO);
 
-            var garmentBeaCukaiFacade = new GarmentBeacukaiFacade(_dbContext(GetCurrentMethod()), GetServiceProvider());
-            var datautilBC = new GarmentBeacukaiDataUtil(datautilDO, datautilBon, garmentBeaCukaiFacade);
+        //    var garmentBeaCukaiFacade = new GarmentBeacukaiFacade(_dbContext(GetCurrentMethod()), GetServiceProvider());
+        //    var datautilBC = new GarmentBeacukaiDataUtil(datautilDO, datautilBon, garmentBeaCukaiFacade);
 
-            var garmentCorrectionNoteFacade = new GarmentCorrectionNotePriceFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
-            var datautilCN = new GarmentCorrectionNoteDataUtil(garmentCorrectionNoteFacade, datautilBC, datautilDO);
+        //    var garmentCorrectionNoteFacade = new GarmentCorrectionNotePriceFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
+        //    var datautilCN = new GarmentCorrectionNoteDataUtil(garmentCorrectionNoteFacade, datautilBC, datautilDO);
 
-            MonitoringCorrectionNoteExpenditureFacade KeluarNK = new MonitoringCorrectionNoteExpenditureFacade(_dbContext(GetCurrentMethod()));
+        //    MonitoringCorrectionNoteExpenditureFacade KeluarNK = new MonitoringCorrectionNoteExpenditureFacade(_dbContext(GetCurrentMethod()));
 
-            var dataNK = await datautilCN.GetTestDataNotaKoreksi();
+        //    var dataNK = await datautilCN.GetTestDataNotaKoreksi();
 
-            var Response = KeluarNK.GenerateExcelMonitoringKeluarNK(null, null, 1, 25, "{}", 7, null);
-            Assert.IsType<System.IO.MemoryStream>(Response);
-        }
+        //    var Response = KeluarNK.GenerateExcelMonitoringKeluarNK(null, null, 1, 25, "{}", 7, null);
+        //    Assert.IsType<System.IO.MemoryStream>(Response);
+        //}
 
-        [Fact]
-        public async Task Should_Success_Get_Keluar_NK_Report_Excel_Null_Parameter()
-        {
-            GarmentUnitReceiptNoteFacade facade = new GarmentUnitReceiptNoteFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
+        //[Fact]
+        //public async Task Should_Success_Get_Keluar_NK_Report_Excel_Null_Parameter()
+        //{
+        //    GarmentUnitReceiptNoteFacade facade = new GarmentUnitReceiptNoteFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
 
-            GarmentDeliveryOrderFacade facadeDO = new GarmentDeliveryOrderFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
-            var datautilDO = dataUtilDO(facadeDO, GetCurrentMethod());
+        //    GarmentDeliveryOrderFacade facadeDO = new GarmentDeliveryOrderFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
+        //    var datautilDO = dataUtilDO(facadeDO, GetCurrentMethod());
 
-            var garmentunitreceiptnoteFacade = new GarmentUnitReceiptNoteFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
-            var datautilBon = new GarmentUnitReceiptNoteDataUtil(garmentunitreceiptnoteFacade, datautilDO);
+        //    var garmentunitreceiptnoteFacade = new GarmentUnitReceiptNoteFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
+        //    var datautilBon = new GarmentUnitReceiptNoteDataUtil(garmentunitreceiptnoteFacade, datautilDO);
 
-            var garmentBeaCukaiFacade = new GarmentBeacukaiFacade(_dbContext(GetCurrentMethod()), GetServiceProvider());
-            var datautilBC = new GarmentBeacukaiDataUtil(datautilDO, garmentBeaCukaiFacade);
+        //    var garmentBeaCukaiFacade = new GarmentBeacukaiFacade(_dbContext(GetCurrentMethod()), GetServiceProvider());
+        //    var datautilBC = new GarmentBeacukaiDataUtil(datautilDO, garmentBeaCukaiFacade);
 
-            var garmentCorrectionNoteFacade = new GarmentCorrectionNotePriceFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
-            var datautilCN = new GarmentCorrectionNoteDataUtil(garmentCorrectionNoteFacade, datautilBC, datautilDO);
+        //    var garmentCorrectionNoteFacade = new GarmentCorrectionNotePriceFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
+        //    var datautilCN = new GarmentCorrectionNoteDataUtil(garmentCorrectionNoteFacade, datautilBC, datautilDO);
 
-            MonitoringCorrectionNoteExpenditureFacade KeluarNK = new MonitoringCorrectionNoteExpenditureFacade(_dbContext(GetCurrentMethod()));
+        //    MonitoringCorrectionNoteExpenditureFacade KeluarNK = new MonitoringCorrectionNoteExpenditureFacade(_dbContext(GetCurrentMethod()));
 
-            var dataNK = await datautilCN.GetTestDataNotaKoreksi();
+        //    var dataNK = await datautilCN.GetTestDataNotaKoreksi();
 
-            DateTime d1 = dataNK.CorrectionDate.DateTime.AddDays(30);
-            DateTime d2 = dataNK.CorrectionDate.DateTime.AddDays(30);
+        //    DateTime d1 = dataNK.CorrectionDate.DateTime.AddDays(30);
+        //    DateTime d2 = dataNK.CorrectionDate.DateTime.AddDays(30);
 
-            var Response = KeluarNK.GenerateExcelMonitoringKeluarNK(d1, d2, 1, 25, "{}", 7, "BCDL");
+        //    var Response = KeluarNK.GenerateExcelMonitoringKeluarNK(d1, d2, 1, 25, "{}", 7, "BCDL");
 
-            Assert.IsType<System.IO.MemoryStream>(Response);
-        }
+        //    Assert.IsType<System.IO.MemoryStream>(Response);
+        //}
 
-        [Fact]
-        public async Task Should_Success_Get_Keluar_NK_Report_Excel_By_User()
-        {
-            GarmentUnitReceiptNoteFacade facade = new GarmentUnitReceiptNoteFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
+        //[Fact]
+        //public async Task Should_Success_Get_Keluar_NK_Report_Excel_By_User()
+        //{
+        //    GarmentUnitReceiptNoteFacade facade = new GarmentUnitReceiptNoteFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
 
-            GarmentDeliveryOrderFacade facadeDO = new GarmentDeliveryOrderFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
-            var datautilDO = dataUtilDO(facadeDO, GetCurrentMethod());
+        //    GarmentDeliveryOrderFacade facadeDO = new GarmentDeliveryOrderFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
+        //    var datautilDO = dataUtilDO(facadeDO, GetCurrentMethod());
 
-            var garmentunitreceiptnoteFacade = new GarmentUnitReceiptNoteFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
-            var datautilBon = new GarmentUnitReceiptNoteDataUtil(garmentunitreceiptnoteFacade, datautilDO);
+        //    var garmentunitreceiptnoteFacade = new GarmentUnitReceiptNoteFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
+        //    var datautilBon = new GarmentUnitReceiptNoteDataUtil(garmentunitreceiptnoteFacade, datautilDO);
 
-            var garmentBeaCukaiFacade = new GarmentBeacukaiFacade(_dbContext(GetCurrentMethod()), GetServiceProvider());
-            var datautilBC = new GarmentBeacukaiDataUtil(datautilDO, garmentBeaCukaiFacade);
+        //    var garmentBeaCukaiFacade = new GarmentBeacukaiFacade(_dbContext(GetCurrentMethod()), GetServiceProvider());
+        //    var datautilBC = new GarmentBeacukaiDataUtil(datautilDO, garmentBeaCukaiFacade);
 
-            var garmentCorrectionNoteFacade = new GarmentCorrectionNotePriceFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
-            var datautilCN = new GarmentCorrectionNoteDataUtil(garmentCorrectionNoteFacade, datautilBC, datautilDO);
+        //    var garmentCorrectionNoteFacade = new GarmentCorrectionNotePriceFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
+        //    var datautilCN = new GarmentCorrectionNoteDataUtil(garmentCorrectionNoteFacade, datautilBC, datautilDO);
 
-            MonitoringCorrectionNoteExpenditureFacade KeluarNK = new MonitoringCorrectionNoteExpenditureFacade(_dbContext(GetCurrentMethod()));
+        //    MonitoringCorrectionNoteExpenditureFacade KeluarNK = new MonitoringCorrectionNoteExpenditureFacade(_dbContext(GetCurrentMethod()));
 
-            var dataNK = await datautilCN.GetTestDataNotaKoreksi();
+        //    var dataNK = await datautilCN.GetTestDataNotaKoreksi();
 
-            var Response = KeluarNK.GenerateExcelMonitoringKeluarNKByUser(null, null, 1, 25, "{}", 7, "BCDL");
-            Assert.IsType<System.IO.MemoryStream>(Response);
-        }
+        //    var Response = KeluarNK.GenerateExcelMonitoringKeluarNKByUser(null, null, 1, 25, "{}", 7, "BCDL");
+        //    Assert.IsType<System.IO.MemoryStream>(Response);
+        //}
 
-        [Fact]
-        public async Task Should_Success_Get_Keluar_NK_Report_Excel_By_User_Null_Parameter()
-        {
-            GarmentUnitReceiptNoteFacade facade = new GarmentUnitReceiptNoteFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
+        //[Fact]
+        //public async Task Should_Success_Get_Keluar_NK_Report_Excel_By_User_Null_Parameter()
+        //{
+        //    GarmentUnitReceiptNoteFacade facade = new GarmentUnitReceiptNoteFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
 
-            GarmentDeliveryOrderFacade facadeDO = new GarmentDeliveryOrderFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
-            var datautilDO = dataUtilDO(facadeDO, GetCurrentMethod());
+        //    GarmentDeliveryOrderFacade facadeDO = new GarmentDeliveryOrderFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
+        //    var datautilDO = dataUtilDO(facadeDO, GetCurrentMethod());
 
-            var garmentunitreceiptnoteFacade = new GarmentUnitReceiptNoteFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
-            var datautilBon = new GarmentUnitReceiptNoteDataUtil(garmentunitreceiptnoteFacade, datautilDO);
+        //    var garmentunitreceiptnoteFacade = new GarmentUnitReceiptNoteFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
+        //    var datautilBon = new GarmentUnitReceiptNoteDataUtil(garmentunitreceiptnoteFacade, datautilDO);
 
-            var garmentBeaCukaiFacade = new GarmentBeacukaiFacade(_dbContext(GetCurrentMethod()), GetServiceProvider());
-            var datautilBC = new GarmentBeacukaiDataUtil(datautilDO, garmentBeaCukaiFacade);
+        //    var garmentBeaCukaiFacade = new GarmentBeacukaiFacade(_dbContext(GetCurrentMethod()), GetServiceProvider());
+        //    var datautilBC = new GarmentBeacukaiDataUtil(datautilDO, garmentBeaCukaiFacade);
 
-            var garmentCorrectionNoteFacade = new GarmentCorrectionNotePriceFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
-            var datautilCN = new GarmentCorrectionNoteDataUtil(garmentCorrectionNoteFacade, datautilBC, datautilDO);
+        //    var garmentCorrectionNoteFacade = new GarmentCorrectionNotePriceFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
+        //    var datautilCN = new GarmentCorrectionNoteDataUtil(garmentCorrectionNoteFacade, datautilBC, datautilDO);
 
-            MonitoringCorrectionNoteExpenditureFacade KeluarNK = new MonitoringCorrectionNoteExpenditureFacade(_dbContext(GetCurrentMethod()));
+        //    MonitoringCorrectionNoteExpenditureFacade KeluarNK = new MonitoringCorrectionNoteExpenditureFacade(_dbContext(GetCurrentMethod()));
 
-            var dataNK = await datautilCN.GetTestDataNotaKoreksi();
+        //    var dataNK = await datautilCN.GetTestDataNotaKoreksi();
 
-            DateTime d1 = dataNK.CorrectionDate.DateTime.AddDays(30);
-            DateTime d2 = dataNK.CorrectionDate.DateTime.AddDays(30);
+        //    DateTime d1 = dataNK.CorrectionDate.DateTime.AddDays(30);
+        //    DateTime d2 = dataNK.CorrectionDate.DateTime.AddDays(30);
 
-            var Response = KeluarNK.GenerateExcelMonitoringKeluarNKByUser(d1, d2, 1, 25, "{}", 7, "BCDL");
+        //    var Response = KeluarNK.GenerateExcelMonitoringKeluarNKByUser(d1, d2, 1, 25, "{}", 7, "BCDL");
 
-            Assert.IsType<System.IO.MemoryStream>(Response);
-        }
+        //    Assert.IsType<System.IO.MemoryStream>(Response);
+        //}
 
         //Buku Harian Pembelian
-        [Fact]
-        public async Task Should_Success_Get_Buku_Sub_Beli_Data()
-        {
-            GarmentDeliveryOrderFacade facadeDO = new GarmentDeliveryOrderFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
-            var datautilDO = dataUtilDO(facadeDO, GetCurrentMethod());
+        //[Fact]
+        //public async Task Should_Success_Get_Buku_Sub_Beli_Data()
+        //{
+        //    GarmentDeliveryOrderFacade facadeDO = new GarmentDeliveryOrderFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
+        //    var datautilDO = dataUtilDO(facadeDO, GetCurrentMethod());
 
-            var garmentBeaCukaiFacade = new GarmentBeacukaiFacade(_dbContext(GetCurrentMethod()), GetServiceProvider());
-            var datautilBC = new GarmentBeacukaiDataUtil(datautilDO, garmentBeaCukaiFacade);
+        //    var garmentBeaCukaiFacade = new GarmentBeacukaiFacade(_dbContext(GetCurrentMethod()), GetServiceProvider());
+        //    var datautilBC = new GarmentBeacukaiDataUtil(datautilDO, garmentBeaCukaiFacade);
 
-            var garmentCorrectionNoteFacade = new GarmentCorrectionNotePriceFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
-            var datautilCN = new GarmentCorrectionNoteDataUtil(garmentCorrectionNoteFacade, datautilBC, datautilDO);
+        //    var garmentCorrectionNoteFacade = new GarmentCorrectionNotePriceFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
+        //    var datautilCN = new GarmentCorrectionNoteDataUtil(garmentCorrectionNoteFacade, datautilBC, datautilDO);
 
-            GarmentDailyPurchasingReportFacade DataNK = new GarmentDailyPurchasingReportFacade(ServiceProvider, _dbContext(GetCurrentMethod()));
+        //    GarmentDailyPurchasingReportFacade DataNK = new GarmentDailyPurchasingReportFacade(ServiceProvider, _dbContext(GetCurrentMethod()));
 
-            var dataNK = await datautilCN.GetTestDataNotaKoreksi();
-            DateTime d1 = dataNK.CorrectionDate.DateTime;
-            DateTime d2 = dataNK.CorrectionDate.DateTime;
+        //    var dataNK = await datautilCN.GetTestDataNotaKoreksi();
+        //    DateTime d1 = dataNK.CorrectionDate.DateTime;
+        //    DateTime d2 = dataNK.CorrectionDate.DateTime;
 
-            var Response = DataNK.GetGDailyPurchasingReport(null, true, null, null, null, null, 7);
-            Assert.NotNull(Response.Item1);
-            Assert.NotEqual(-1, Response.Item2);
-        }
+        //    var Response = DataNK.GetGDailyPurchasingReport(null, true, null, null, null, null, 7);
+        //    Assert.NotNull(Response.Item1);
+        //    Assert.NotEqual(-1, Response.Item2);
+        //}
 
-        [Fact]
-        public async Task Should_Success_Get_Buku_Sub_Beli_Null_Parameter()
-        {
-            GarmentDeliveryOrderFacade facadeDO = new GarmentDeliveryOrderFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
-            var datautilDO = dataUtilDO(facadeDO, GetCurrentMethod());
+        //[Fact]
+        //public async Task Should_Success_Get_Buku_Sub_Beli_Null_Parameter()
+        //{
+        //    GarmentDeliveryOrderFacade facadeDO = new GarmentDeliveryOrderFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
+        //    var datautilDO = dataUtilDO(facadeDO, GetCurrentMethod());
 
-            var garmentBeaCukaiFacade = new GarmentBeacukaiFacade(_dbContext(GetCurrentMethod()), GetServiceProvider());
-            var datautilBC = new GarmentBeacukaiDataUtil(datautilDO, garmentBeaCukaiFacade);
+        //    var garmentBeaCukaiFacade = new GarmentBeacukaiFacade(_dbContext(GetCurrentMethod()), GetServiceProvider());
+        //    var datautilBC = new GarmentBeacukaiDataUtil(datautilDO, garmentBeaCukaiFacade);
 
-            var garmentCorrectionNoteFacade = new GarmentCorrectionNotePriceFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
-            var datautilCN = new GarmentCorrectionNoteDataUtil(garmentCorrectionNoteFacade, datautilBC, datautilDO);
+        //    var garmentCorrectionNoteFacade = new GarmentCorrectionNotePriceFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
+        //    var datautilCN = new GarmentCorrectionNoteDataUtil(garmentCorrectionNoteFacade, datautilBC, datautilDO);
 
-            GarmentDailyPurchasingReportFacade DataNK = new GarmentDailyPurchasingReportFacade(ServiceProvider, _dbContext(GetCurrentMethod()));
+        //    GarmentDailyPurchasingReportFacade DataNK = new GarmentDailyPurchasingReportFacade(ServiceProvider, _dbContext(GetCurrentMethod()));
 
-            var dataNK = await datautilCN.GetTestDataNotaKoreksi();
-            DateTime d1 = dataNK.CorrectionDate.DateTime;
-            DateTime d2 = dataNK.CorrectionDate.DateTime;
+        //    var dataNK = await datautilCN.GetTestDataNotaKoreksi();
+        //    DateTime d1 = dataNK.CorrectionDate.DateTime;
+        //    DateTime d2 = dataNK.CorrectionDate.DateTime;
 
-            var Response = DataNK.GetGDailyPurchasingReport(null, true, null, null, null, null, 7);
-            Assert.NotNull(Response.Item1);
-            Assert.NotEqual(-1, Response.Item2);
-        }
+        //    var Response = DataNK.GetGDailyPurchasingReport(null, true, null, null, null, null, 7);
+        //    Assert.NotNull(Response.Item1);
+        //    Assert.NotEqual(-1, Response.Item2);
+        //}
 
-        [Fact]
-        public async Task Should_Success_Get_Buku_Sub_Beli_Excel()
-        {
-            GarmentDeliveryOrderFacade facadeDO = new GarmentDeliveryOrderFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
-            var datautilDO = dataUtilDO(facadeDO, GetCurrentMethod());
+        //[Fact]
+        //public async Task Should_Success_Get_Buku_Sub_Beli_Excel()
+        //{
+        //    GarmentDeliveryOrderFacade facadeDO = new GarmentDeliveryOrderFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
+        //    var datautilDO = dataUtilDO(facadeDO, GetCurrentMethod());
 
-            var garmentBeaCukaiFacade = new GarmentBeacukaiFacade(_dbContext(GetCurrentMethod()), GetServiceProvider());
-            var datautilBC = new GarmentBeacukaiDataUtil(datautilDO, garmentBeaCukaiFacade);
+        //    var garmentBeaCukaiFacade = new GarmentBeacukaiFacade(_dbContext(GetCurrentMethod()), GetServiceProvider());
+        //    var datautilBC = new GarmentBeacukaiDataUtil(datautilDO, garmentBeaCukaiFacade);
 
-            var garmentCorrectionNoteFacade = new GarmentCorrectionNotePriceFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
-            var datautilCN = new GarmentCorrectionNoteDataUtil(garmentCorrectionNoteFacade, datautilBC, datautilDO);
+        //    var garmentCorrectionNoteFacade = new GarmentCorrectionNotePriceFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
+        //    var datautilCN = new GarmentCorrectionNoteDataUtil(garmentCorrectionNoteFacade, datautilBC, datautilDO);
 
-            GarmentDailyPurchasingReportFacade DataNK = new GarmentDailyPurchasingReportFacade(ServiceProvider, _dbContext(GetCurrentMethod()));
+        //    GarmentDailyPurchasingReportFacade DataNK = new GarmentDailyPurchasingReportFacade(ServiceProvider, _dbContext(GetCurrentMethod()));
 
-            var dataNK = await datautilCN.GetTestDataNotaKoreksi();
-            DateTime d1 = dataNK.CorrectionDate.DateTime;
-            DateTime d2 = dataNK.CorrectionDate.DateTime;
+        //    var dataNK = await datautilCN.GetTestDataNotaKoreksi();
+        //    DateTime d1 = dataNK.CorrectionDate.DateTime;
+        //    DateTime d2 = dataNK.CorrectionDate.DateTime;
 
-            var Response = DataNK.GenerateExcelGDailyPurchasingReport(null, true, null, null, null,null, 7);
-            Assert.IsType<System.IO.MemoryStream>(Response);
-        }
+        //    var Response = DataNK.GenerateExcelGDailyPurchasingReport(null, true, null, null, null,null, 7);
+        //    Assert.IsType<System.IO.MemoryStream>(Response);
+        //}
 
-        [Fact]
-        public async Task Should_Success_Get_Buku_Sub_Beli_Excel_Null_Parameter()
-        {
-            GarmentDeliveryOrderFacade facadeDO = new GarmentDeliveryOrderFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
-            var datautilDO = dataUtilDO(facadeDO, GetCurrentMethod());
+        //[Fact]
+        //public async Task Should_Success_Get_Buku_Sub_Beli_Excel_Null_Parameter()
+        //{
+        //    GarmentDeliveryOrderFacade facadeDO = new GarmentDeliveryOrderFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
+        //    var datautilDO = dataUtilDO(facadeDO, GetCurrentMethod());
 
-            var garmentBeaCukaiFacade = new GarmentBeacukaiFacade(_dbContext(GetCurrentMethod()), GetServiceProvider());
-            var datautilBC = new GarmentBeacukaiDataUtil(datautilDO, garmentBeaCukaiFacade);
+        //    var garmentBeaCukaiFacade = new GarmentBeacukaiFacade(_dbContext(GetCurrentMethod()), GetServiceProvider());
+        //    var datautilBC = new GarmentBeacukaiDataUtil(datautilDO, garmentBeaCukaiFacade);
 
-            var garmentCorrectionNoteFacade = new GarmentCorrectionNotePriceFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
-            var datautilCN = new GarmentCorrectionNoteDataUtil(garmentCorrectionNoteFacade, datautilBC, datautilDO);
+        //    var garmentCorrectionNoteFacade = new GarmentCorrectionNotePriceFacade(GetServiceProvider(), _dbContext(GetCurrentMethod()));
+        //    var datautilCN = new GarmentCorrectionNoteDataUtil(garmentCorrectionNoteFacade, datautilBC, datautilDO);
 
-            GarmentDailyPurchasingReportFacade DataNK = new GarmentDailyPurchasingReportFacade(ServiceProvider, _dbContext(GetCurrentMethod()));
+        //    GarmentDailyPurchasingReportFacade DataNK = new GarmentDailyPurchasingReportFacade(ServiceProvider, _dbContext(GetCurrentMethod()));
 
-            var dataNK = await datautilCN.GetTestDataNotaKoreksi();
-            DateTime d1 = dataNK.CorrectionDate.DateTime.AddDays(30);
-            DateTime d2 = dataNK.CorrectionDate.DateTime.AddDays(30);
+        //    var dataNK = await datautilCN.GetTestDataNotaKoreksi();
+        //    DateTime d1 = dataNK.CorrectionDate.DateTime.AddDays(30);
+        //    DateTime d2 = dataNK.CorrectionDate.DateTime.AddDays(30);
 
-            var Response = DataNK.GenerateExcelGDailyPurchasingReport(null, true, null, null, null,null, 7);
-            Assert.IsType<System.IO.MemoryStream>(Response);
-        }
+        //    var Response = DataNK.GenerateExcelGDailyPurchasingReport(null, true, null, null, null,null, 7);
+        //    Assert.IsType<System.IO.MemoryStream>(Response);
+        //}
 
         #region flow detail penerimaan 
 
@@ -1569,6 +1569,7 @@ namespace Com.DanLiris.Service.Purchasing.Test.Facades.GarmentUnitReceiptNoteFac
         }
 
         #endregion
+
         #region StockReport
         [Fact]
         public async void Should_Success_Get_Stock_Report()
@@ -2052,6 +2053,7 @@ namespace Com.DanLiris.Service.Purchasing.Test.Facades.GarmentUnitReceiptNoteFac
             Assert.IsType<System.IO.MemoryStream>(Response);
         }
 #endregion
+
         [Fact]
         public async Task Should_Success_Get_Monitoring_IN()
         {

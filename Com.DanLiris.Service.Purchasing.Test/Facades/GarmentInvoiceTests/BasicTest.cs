@@ -426,64 +426,64 @@ namespace Com.DanLiris.Service.Purchasing.Test.Facades.GarmentInvoiceTests
         }
 
         // Buku Harian Pembelian
-        [Fact]
-        public async Task Should_Success_Get_Buku_Sub_Beli_Data()
-        {
-            var facade = new GarmentInvoiceFacade(_dbContext(GetCurrentMethod()), ServiceProvider);
-            GarmentInvoice data = await dataUtil(facade, GetCurrentMethod()).GetNewDataViewModel(USERNAME);
+        //[Fact]
+        //public async Task Should_Success_Get_Buku_Sub_Beli_Data()
+        //{
+        //    var facade = new GarmentInvoiceFacade(_dbContext(GetCurrentMethod()), ServiceProvider);
+        //    GarmentInvoice data = await dataUtil(facade, GetCurrentMethod()).GetNewDataViewModel(USERNAME);
 
-            GarmentDailyPurchasingReportFacade DataInv = new GarmentDailyPurchasingReportFacade(GetServiceProvider().Object, _dbContext(GetCurrentMethod()));
+        //    GarmentDailyPurchasingReportFacade DataInv = new GarmentDailyPurchasingReportFacade(GetServiceProvider().Object, _dbContext(GetCurrentMethod()));
 
-            DateTime d1 = data.InvoiceDate.DateTime;
-            DateTime d2 = data.InvoiceDate.DateTime;
+        //    DateTime d1 = data.InvoiceDate.DateTime;
+        //    DateTime d2 = data.InvoiceDate.DateTime;
 
-            var Response = DataInv.GetGDailyPurchasingReport(null, true, null, null, null,null, 7);
-            Assert.NotNull(Response.Item1);
-        }
+        //    var Response = DataInv.GetGDailyPurchasingReport(null, true, null, null, null,null, 7);
+        //    Assert.NotNull(Response.Item1);
+        //}
 
-        [Fact]
-        public async Task Should_Success_Get_Buku_Sub_Beli_Null_Parameter()
-        {
-            var facade = new GarmentInvoiceFacade(_dbContext(GetCurrentMethod()), ServiceProvider);
-            GarmentInvoice data = await dataUtil(facade, GetCurrentMethod()).GetNewDataViewModel(USERNAME);
+        //[Fact]
+        //public async Task Should_Success_Get_Buku_Sub_Beli_Null_Parameter()
+        //{
+        //    var facade = new GarmentInvoiceFacade(_dbContext(GetCurrentMethod()), ServiceProvider);
+        //    GarmentInvoice data = await dataUtil(facade, GetCurrentMethod()).GetNewDataViewModel(USERNAME);
 
-            GarmentDailyPurchasingReportFacade DataInv = new GarmentDailyPurchasingReportFacade(GetServiceProvider().Object, _dbContext(GetCurrentMethod()));
+        //    GarmentDailyPurchasingReportFacade DataInv = new GarmentDailyPurchasingReportFacade(GetServiceProvider().Object, _dbContext(GetCurrentMethod()));
 
-            DateTime d1 = data.InvoiceDate.DateTime.AddDays(30);
-            DateTime d2 = data.InvoiceDate.DateTime.AddDays(30);
+        //    DateTime d1 = data.InvoiceDate.DateTime.AddDays(30);
+        //    DateTime d2 = data.InvoiceDate.DateTime.AddDays(30);
 
-            var Response = DataInv.GetGDailyPurchasingReport(null, true, null, null, null,null, 7);
-            Assert.NotNull(Response.Item1);
-        }
+        //    var Response = DataInv.GetGDailyPurchasingReport(null, true, null, null, null,null, 7);
+        //    Assert.NotNull(Response.Item1);
+        //}
 
-        [Fact]
-        public async Task Should_Success_Get_Buku_Sub_Beli_Excel()
-        {
-            var facade = new GarmentInvoiceFacade(_dbContext(GetCurrentMethod()), ServiceProvider);
-            GarmentInvoice data = await dataUtil(facade, GetCurrentMethod()).GetNewDataViewModel(USERNAME);
+        //[Fact]
+        //public async Task Should_Success_Get_Buku_Sub_Beli_Excel()
+        //{
+        //    var facade = new GarmentInvoiceFacade(_dbContext(GetCurrentMethod()), ServiceProvider);
+        //    GarmentInvoice data = await dataUtil(facade, GetCurrentMethod()).GetNewDataViewModel(USERNAME);
 
-            GarmentDailyPurchasingReportFacade DataInv = new GarmentDailyPurchasingReportFacade(GetServiceProvider().Object, _dbContext(GetCurrentMethod()));
+        //    GarmentDailyPurchasingReportFacade DataInv = new GarmentDailyPurchasingReportFacade(GetServiceProvider().Object, _dbContext(GetCurrentMethod()));
 
-            DateTime d1 = data.InvoiceDate.DateTime;
-            DateTime d2 = data.InvoiceDate.DateTime;
+        //    DateTime d1 = data.InvoiceDate.DateTime;
+        //    DateTime d2 = data.InvoiceDate.DateTime;
 
-            var Response = DataInv.GenerateExcelGDailyPurchasingReport(null, true, null, null, null,null, 7);
-            Assert.IsType<System.IO.MemoryStream>(Response);
-        }
+        //    var Response = DataInv.GenerateExcelGDailyPurchasingReport(null, true, null, null, null,null, 7);
+        //    Assert.IsType<System.IO.MemoryStream>(Response);
+        //}
 
-        [Fact]
-        public async Task Should_Success_Get_Buku_Sub_Beli_Excel_Null_Parameter()
-        {
-            var facade = new GarmentInvoiceFacade(_dbContext(GetCurrentMethod()), ServiceProvider);
-            GarmentInvoice data = await dataUtil(facade, GetCurrentMethod()).GetNewDataViewModel(USERNAME);
+        //[Fact]
+        //public async Task Should_Success_Get_Buku_Sub_Beli_Excel_Null_Parameter()
+        //{
+        //    var facade = new GarmentInvoiceFacade(_dbContext(GetCurrentMethod()), ServiceProvider);
+        //    GarmentInvoice data = await dataUtil(facade, GetCurrentMethod()).GetNewDataViewModel(USERNAME);
 
-            GarmentDailyPurchasingReportFacade DataInv = new GarmentDailyPurchasingReportFacade(GetServiceProvider().Object, _dbContext(GetCurrentMethod()));
+        //    GarmentDailyPurchasingReportFacade DataInv = new GarmentDailyPurchasingReportFacade(GetServiceProvider().Object, _dbContext(GetCurrentMethod()));
 
-            DateTime d1 = data.InvoiceDate.DateTime.AddDays(30);
-            DateTime d2 = data.InvoiceDate.DateTime.AddDays(30);
+        //    DateTime d1 = data.InvoiceDate.DateTime.AddDays(30);
+        //    DateTime d2 = data.InvoiceDate.DateTime.AddDays(30);
 
-            var Response = DataInv.GenerateExcelGDailyPurchasingReport(null, true, null, null,null, null, 7);
-            Assert.IsType<System.IO.MemoryStream>(Response);
-        }
+        //    var Response = DataInv.GenerateExcelGDailyPurchasingReport(null, true, null, null,null, null, 7);
+        //    Assert.IsType<System.IO.MemoryStream>(Response);
+        //}
     }
 }

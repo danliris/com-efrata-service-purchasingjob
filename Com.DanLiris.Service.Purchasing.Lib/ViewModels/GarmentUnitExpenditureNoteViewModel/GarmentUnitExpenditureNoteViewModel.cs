@@ -50,11 +50,20 @@ namespace Com.DanLiris.Service.Purchasing.Lib.ViewModels.GarmentUnitExpenditureN
             {
                 yield return new ValidationResult("Tgl. Bon Pengeluaran tidak boleh lebih dari hari ini.", new List<string> { "ExpenditureDate" });
             }
-
-
             if (UnitDONo == null)
             {
                 yield return new ValidationResult("Nomor Delivery Order Diperlukan", new List<string> { "UnitDONo" });
+            }
+            else
+            {
+                var unitDO = unitDeliveryOrderFacade.ReadById((int)UnitDOId);
+                if(unitDO != null)
+                {
+                    if (unitDO.IsUsed)
+                    {
+                        yield return new ValidationResult("Nomor Delivery Order Telah Digunakan", new List<string> { "UnitDONo" });
+                    }
+                }
             }
 
             int itemErrorCount = 0;
