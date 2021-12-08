@@ -204,7 +204,7 @@ namespace Com.DanLiris.Service.Purchasing.WebApi.Controllers.v1.GarmentUnitExpen
                 var CreatedModel = await facade.Create(Model);
 
                 //added 30-NOV-2021
-                if (CreatedModel != null && CreatedModel.ExpenditureType == "PROSES")
+                if (CreatedModel != null && CreatedModel.ExpenditureType == "PROSES" && CreatedModel.Items.Any(x => x.ProductName == "FABRIC"))
                 {
                     await facade.CreateGPreparing(CreatedModel);
                 }
