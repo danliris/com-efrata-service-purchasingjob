@@ -853,30 +853,33 @@ namespace Com.DanLiris.Service.Purchasing.Lib.Facades.GarmentUnitExpenditureNote
 
             foreach(var item in gurn.Items)
             {
-                //var basicPrice = item.PricePerDealUnit * item.DOCurrencyRate;
-                var prepitem = new GarmentPreparingItemViewModel()
+                if(item.ProductName == "FABRIC")
                 {
-                    UENItemId = item.Id,
-                    Product = new ViewModels.NewIntegrationViewModel.ProductViewModel()
+                    //var basicPrice = item.PricePerDealUnit * item.DOCurrencyRate;
+                    var prepitem = new GarmentPreparingItemViewModel()
                     {
-                        Id = item.ProductId.ToString(),
-                        Code = item.ProductCode,
-                        Name = item.ProductName
-                    },
-                    Quantity = item.Quantity,
-                    RemainingQuantity = item.Quantity,
-                    Uom = new ViewModels.NewIntegrationViewModel.UomViewModel()
-                    {
-                        Id = item.UomId.ToString(),
-                        Unit = item.UomUnit
-                    },
-                    ROSource = unitDO.Items.Where(x => x.Id.Equals(item.UnitDOItemId)).Select(x => x.RONo).FirstOrDefault(),
-                    DesignColor = unitDO.Items.Where(x => x.Id.Equals(item.UnitDOItemId)).Select(x => x.DesignColor).FirstOrDefault(),
-                    BasicPrice = item.BasicPrice,
-                    //Math.Round((decimal)basicPrice, 4),
-                    FabricType = item.FabricType
-                };
-                prepsItem.Add(prepitem);
+                        UENItemId = item.Id,
+                        Product = new ViewModels.NewIntegrationViewModel.ProductViewModel()
+                        {
+                            Id = item.ProductId.ToString(),
+                            Code = item.ProductCode,
+                            Name = item.ProductName
+                        },
+                        Quantity = item.Quantity,
+                        RemainingQuantity = item.Quantity,
+                        Uom = new ViewModels.NewIntegrationViewModel.UomViewModel()
+                        {
+                            Id = item.UomId.ToString(),
+                            Unit = item.UomUnit
+                        },
+                        ROSource = unitDO.Items.Where(x => x.Id.Equals(item.UnitDOItemId)).Select(x => x.RONo).FirstOrDefault(),
+                        DesignColor = unitDO.Items.Where(x => x.Id.Equals(item.UnitDOItemId)).Select(x => x.DesignColor).FirstOrDefault(),
+                        BasicPrice = item.BasicPrice,
+                        //Math.Round((decimal)basicPrice, 4),
+                        FabricType = item.FabricType
+                    };
+                    prepsItem.Add(prepitem);
+                }
             }
             preps.Items = prepsItem;
 
